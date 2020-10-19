@@ -28,6 +28,8 @@ namespace FieldSubmiter
                 new EventHandler(UpdateAvailable);
             AutoUpdater.CheckingFailed +=
                 new FailHandler(UpdateCheckFailed);
+            AutoUpdater.UpToDate +=
+                new SuccessHandler(Updated);
 
             if (!AutoUpdater.ClosingForInstall)
             {
@@ -38,6 +40,10 @@ namespace FieldSubmiter
         void UpdateCheckFailed(object s, FailArgs e)
         {
             LblStatus.Text = "ERROR: Failed to check.";
+        }
+        void Updated(object s, SuccessArgs e)
+        {
+            MessageBox.Show("Up to date!");
         }
 
         void UpdateAvailable(object s, EventArgs e)
