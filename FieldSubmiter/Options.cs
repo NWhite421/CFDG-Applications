@@ -131,7 +131,7 @@ namespace FieldSubmiter
                 || string.IsNullOrEmpty(TxtEMailPassword.Text) 
                 || string.IsNullOrEmpty(TxtReceivers.Text)))
             {
-                MessageBox.Show("Fill out all the e-mail settings or configure TCP connection.");
+                MessageBox.Show("Fill out all the e-mail settings or configure the E-Mail connection.");
                 return;
             }
             //TODO: Add TCP Check

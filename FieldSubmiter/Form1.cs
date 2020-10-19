@@ -55,7 +55,7 @@ namespace FieldSubmiter
             //Add version to title
             string version = "v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString()+ "." +
-                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString();
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString();
 #if DEBUG
             version += " [debug]";
 #endif
