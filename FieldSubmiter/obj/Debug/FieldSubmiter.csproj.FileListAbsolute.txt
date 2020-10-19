@@ -11,3 +11,16 @@ C:\Users\Nathan White\source\repos\ODG\FieldSubmiter\obj\Debug\FieldSubmiter.csp
 C:\Users\Nathan White\source\repos\ODG\FieldSubmiter\obj\Debug\FieldSubmiter.exe
 C:\Users\Nathan White\source\repos\ODG\FieldSubmiter\obj\Debug\FieldSubmiter.pdb
 C:\Users\Nathan White\source\repos\ODG\FieldSubmiter\obj\Debug\FieldSubmiter.Options.resources
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe.config
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.pdb
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\AutomaticUpdater.dll
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csprojAssemblyReference.cache
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.MainForm.resources
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.Options.resources
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.Properties.Resources.resources
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csproj.GenerateResource.cache
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csproj.CoreCompileInputs.cache
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csproj.CopyComplete
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.exe
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.pdb

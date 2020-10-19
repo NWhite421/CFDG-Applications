@@ -37,8 +37,8 @@
     <Setting Name="Name" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="SendMethod" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="SendMethod" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="EMailServerMethod" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

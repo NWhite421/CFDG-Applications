@@ -219,6 +219,7 @@
             this.CmdSubmit.TabIndex = 16;
             this.CmdSubmit.Text = "Submit";
             this.CmdSubmit.UseVisualStyleBackColor = true;
+            this.CmdSubmit.Click += new System.EventHandler(this.SendData);
             // 
             // LblStatus
             // 

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using wyDay.Controls;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
 
 namespace FieldSubmiter
 {
@@ -45,6 +47,22 @@ namespace FieldSubmiter
 
         void LoadSettings()
         {
+            if (string.IsNullOrEmpty(Properties.Settings.Default.Name))
+            {
+                Options options = new Options(false);
+                options.ShowDialog();
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.Name))
+                {
+                    goto MainArea;
+                }
+                else
+                {
+                    MessageBox.Show("Please allow someone who knows what their doing to confiure your device.");
+                    this.Close();
+                }
+            }
+
+            MainArea:
             //Populate the purpose list
             var PurposeList = Properties.Settings.Default.Purposes.Cast<string>().ToList();
             CbPurpose.Items.AddRange(PurposeList.ToArray());
@@ -203,6 +221,109 @@ namespace FieldSubmiter
             Options options = new Options();
             options.ShowDialog();
             options.Dispose();
+        }
+
+        void SendData(object s, EventArgs e)
+        {
+            if (Properties.Settings.Default.SendMethod)
+            {
+                //TCP
+            }
+            else
+            {
+                LblStatus.Text = "Creating E-Mail";
+                //EMail
+                
+                try
+                {
+                    MailMessage message = new MailMessage();
+
+                    string[] toPeople = Properties.Settings.Default.DestEmail.Split(',');
+                    foreach (string dest in toPeople)
+                    {
+                        message.To.Add(dest);
+                    }
+
+                    message.From = new MailAddress(Properties.Settings.Default.EMail);
+
+                    if (TxtNumber.Text == "12-34-567")
+                    {
+                        message.Subject = "Testing app config";
+                        message.Body = "Alert the person who sent this that the test worked and you received this message.";
+                    }
+                    else
+                    {
+                        //TODO: impliment
+                    }
+
+                    LblStatus.Text = "Preparing Sender";
+
+
+                    SmtpClient client;
+                switch (Properties.Settings.Default.EMailServerMethod)
+                {
+                    case 0:
+                        {
+                            client = new SmtpClient(EMailServerInfo.GMail.Host)
+                            {
+                                Port = EMailServerInfo.GMail.Port,
+                                EnableSsl = EMailServerInfo.GMail.EnableSSL,
+                                Credentials = new NetworkCredential(Properties.Settings.Default.EMail, Properties.Settings.Default.Password)
+                            };
+                            break;
+                        }
+                    case 1:
+                        {
+                            client = new SmtpClient(EMailServerInfo.GoDaddy.Host)
+                            {
+                                Port = EMailServerInfo.GoDaddy.Port,
+                                EnableSsl = EMailServerInfo.GoDaddy.EnableSSL,
+                                Credentials = new NetworkCredential(Properties.Settings.Default.EMail, Properties.Settings.Default.Password)
+                            };
+                            break;
+                        }
+                    case 2:
+                        {
+                            client = new SmtpClient(EMailServerInfo.Office365.Host)
+                            {
+                                Port = EMailServerInfo.Office365.Port,
+                                EnableSsl = EMailServerInfo.Office365.EnableSSL,
+                                Credentials = new NetworkCredential(Properties.Settings.Default.EMail, Properties.Settings.Default.Password)
+                            };
+                            break;
+                        }
+                    case 3:
+                    default:
+                        {
+                            client = new SmtpClient(Properties.Settings.Default.EMailDomain)
+                            {
+                                Port = Properties.Settings.Default.EMailPort,
+                                EnableSsl = Properties.Settings.Default.EMailSSL,
+                                Credentials = new NetworkCredential(Properties.Settings.Default.EMail, Properties.Settings.Default.Password)
+                            };
+                            break;
+                        }
+                }
+
+                LblStatus.Text = "Sending E-Mail";
+                client.Send(message);
+
+                LblStatus.Text = "Message sent.";
+
+
+                message.Dispose();
+                client.Dispose();
+            } catch (Exception ex)
+                {
+                    LblStatus.Text = "Message failed.";
+#if DEBUG
+                    MessageBox.Show(ex.Message);
+#endif
+                }
+                finally
+                {
+                }
+            }
         }
     }
 }

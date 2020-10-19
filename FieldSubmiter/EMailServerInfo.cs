@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,19 @@ namespace FieldSubmiter
                     return false;
                 }
             }
+
+            public SmtpClient GetClientInfo
+            {
+                get
+                {
+                    var client = new SmtpClient(Host)
+                    {
+                        Port = Port,
+                        EnableSsl = EnableSSL
+                    };
+                    return client;
+                }
+            }
         }
 
         public struct GoDaddy
@@ -56,6 +70,19 @@ namespace FieldSubmiter
                     return true;
                 }
             }
+
+            public SmtpClient GetClientInfo
+            {
+                get
+                {
+                    var client = new SmtpClient(Host)
+                    {
+                        Port = Port,
+                        EnableSsl = EnableSSL
+                    };
+                    return client;
+                }
+            }
         }
 
         public struct Office365
@@ -78,7 +105,20 @@ namespace FieldSubmiter
             {
                 get
                 {
-                    return false;
+                    return true;
+                }
+            }
+
+            public SmtpClient GetClientInfo
+            {
+                get
+                {
+                    var client = new SmtpClient(Host)
+                    {
+                        Port = Port,
+                        EnableSsl = EnableSSL
+                    };
+                    return client;
                 }
             }
         }

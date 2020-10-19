@@ -132,10 +132,10 @@ namespace FieldSubmiter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int SendMethod {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SendMethod {
             get {
-                return ((int)(this["SendMethod"]));
+                return ((bool)(this["SendMethod"]));
             }
             set {
                 this["SendMethod"] = value;
