@@ -38,6 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.RbTCPConnection = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtReceivers = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.CbxEmailSSL = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.TxtEmailPort = new System.Windows.Forms.TextBox();
@@ -58,8 +60,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.CmdApplyChanges = new System.Windows.Forms.Button();
             this.CmdDiscardChanges = new System.Windows.Forms.Button();
-            this.TxtReceivers = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +104,7 @@
             this.button1.TabStop = false;
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.BrowseForFolder);
             // 
             // TxtFullName
             // 
@@ -176,6 +177,23 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "E-Mail Settings";
+            // 
+            // TxtReceivers
+            // 
+            this.TxtReceivers.Enabled = false;
+            this.TxtReceivers.Location = new System.Drawing.Point(120, 89);
+            this.TxtReceivers.Name = "TxtReceivers";
+            this.TxtReceivers.Size = new System.Drawing.Size(392, 26);
+            this.TxtReceivers.TabIndex = 6;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(31, 92);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 20);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "Receivers:";
             // 
             // CbxEmailSSL
             // 
@@ -301,7 +319,7 @@
             this.groupBox2.Size = new System.Drawing.Size(518, 116);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "TCP Connection Settings";
             // 
             // label12
             // 
@@ -370,23 +388,6 @@
             this.CmdDiscardChanges.Text = "Discard Changes";
             this.CmdDiscardChanges.UseVisualStyleBackColor = true;
             this.CmdDiscardChanges.Click += new System.EventHandler(this.CmdDiscardChanges_Click);
-            // 
-            // TxtReceivers
-            // 
-            this.TxtReceivers.Enabled = false;
-            this.TxtReceivers.Location = new System.Drawing.Point(120, 89);
-            this.TxtReceivers.Name = "TxtReceivers";
-            this.TxtReceivers.Size = new System.Drawing.Size(392, 26);
-            this.TxtReceivers.TabIndex = 6;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(31, 92);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 20);
-            this.label13.TabIndex = 24;
-            this.label13.Text = "Receivers:";
             // 
             // Options
             // 

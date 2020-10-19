@@ -24,14 +24,14 @@ namespace FieldSubmiter
         {
             InitializeComponent();
 
-            AutoUpdater.UpdateAvailable +=
+            AutoUpdate.UpdateAvailable +=
                 new EventHandler(UpdateAvailable);
-            AutoUpdater.CheckingFailed +=
+            AutoUpdate.CheckingFailed +=
                 new FailHandler(UpdateCheckFailed);
-            AutoUpdater.UpToDate +=
+            AutoUpdate.UpToDate +=
                 new SuccessHandler(Updated);
 
-            if (!AutoUpdater.ClosingForInstall)
+            if (!AutoUpdate.ClosingForInstall)
             {
                 LoadSettings();
             }
@@ -88,6 +88,7 @@ namespace FieldSubmiter
             //Establish internal lists
             JobNumbers = new List<string> { };
             Files = new List<string> { };
+
         }
 
         private void AutoUpdate_ClosingAborted(object sender, EventArgs e)
@@ -97,7 +98,7 @@ namespace FieldSubmiter
 
         private void CheckForUpdates(object sender, EventArgs e)
         {
-            AutoUpdater.ForceCheckForUpdate();
+            AutoUpdate.ForceCheckForUpdate();
         }
 
         private void OnNumberChanged(object sender, EventArgs e)
@@ -229,6 +230,16 @@ namespace FieldSubmiter
             options.Dispose();
         }
 
+        string msgBody = "!!Job Number\r\n" +
+            "{JOBNO}\r\n" +
+            "!!Purpose\r\n" +
+            "{PURPOSE}\r\n" +
+            "!!SENDER\r\n" +
+            "{SENDER}\r\n" +
+            "!!NOTES\r\n" +
+            "{NOTES}\r\n" +
+            "!!END";
+
         void SendData(object s, EventArgs e)
         {
             if (Properties.Settings.Default.SendMethod)
@@ -259,7 +270,40 @@ namespace FieldSubmiter
                     }
                     else
                     {
-                        //TODO: impliment
+                        if (JobNumbers.Count == 0)
+                        {
+                            if (Regex.IsMatch(TxtNumber.Text, @"\d{2}-\d{2}-\d{3}"))
+                            {
+                                JobNumbers.Add(TxtNumber.Text);
+                            }
+                            else
+                            {
+                                LblStatus.Text = "No job numbers detected.";
+                                return;
+                            }
+                        }
+
+                        if (Files.Count == 0)
+                        {
+                            var mr = MessageBox.Show("No files were added, continue sending data?", "Confirm", MessageBoxButtons.YesNo);
+                            if (mr == DialogResult.No) { LblStatus.Text = "No files detected."; return; }
+                        }
+                        else
+                        {
+                            foreach (string file in Files)
+                            {
+                                Attachment attachment = new Attachment(file);
+                                message.Attachments.Add(attachment);
+                            }
+                        }
+
+                        string msgBodyFormatted = msgBody.Replace("{SENDER}", Properties.Settings.Default.Name)
+                            .Replace("{JOBNO}", String.Join("\r\n", JobNumbers))
+                            .Replace("{PURPOSE}", CbPurpose.Text)
+                            .Replace("{NOTES}", TxtNotes.Text);
+
+                        message.Subject = "Field Data Submission";
+                        message.Body = msgBodyFormatted;
                     }
 
                     LblStatus.Text = "Preparing Sender";
@@ -331,5 +375,6 @@ namespace FieldSubmiter
                 }
             }
         }
+
     }
 }

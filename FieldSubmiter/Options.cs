@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FieldSubmiter
 {
@@ -150,6 +151,22 @@ namespace FieldSubmiter
 
             Properties.Settings.Default.Save();
             this.Close();
+        }
+
+        private void BrowseForFolder(object sender, EventArgs e)
+        {
+            var directoryDialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Title = "Select Folder",
+                Multiselect = false,
+                AllowNonFileSystemItems = false,
+                DefaultDirectory = string.IsNullOrEmpty(TxtDefaultSearch.Text) ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) : TxtDefaultSearch.Text
+            };
+            var dr = directoryDialog.ShowDialog();
+            if (dr == CommonFileDialogResult.Cancel) return;
+            TxtDefaultSearch.Text = directoryDialog.FileName;
+            directoryDialog.Dispose();
         }
     }
 }
