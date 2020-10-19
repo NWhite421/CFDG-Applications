@@ -260,10 +260,11 @@
             // AutoUpdate
             // 
             this.AutoUpdate.ContainerForm = this;
-            this.AutoUpdate.Location = new System.Drawing.Point(0, 0);
+            this.AutoUpdate.GUID = "e99d13f4-49aa-4180-83e2-232a5ff27b3d";
+            this.AutoUpdate.Location = new System.Drawing.Point(8, 7);
             this.AutoUpdate.Name = "AutoUpdate";
             this.AutoUpdate.Size = new System.Drawing.Size(16, 16);
-            this.AutoUpdate.TabIndex = 0;
+            this.AutoUpdate.TabIndex = 20;
             this.AutoUpdate.wyUpdateCommandline = null;
             this.AutoUpdate.ClosingAborted += new System.EventHandler(this.AutoUpdate_ClosingAborted);
             // 
@@ -273,6 +274,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(257, 618);
+            this.Controls.Add(this.AutoUpdate);
             this.Controls.Add(this.CmdUpdate);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.LblStatus);

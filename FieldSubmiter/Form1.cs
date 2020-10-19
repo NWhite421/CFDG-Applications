@@ -24,31 +24,10 @@ namespace FieldSubmiter
         {
             InitializeComponent();
 
-            AutoUpdate.UpdateAvailable +=
-                new EventHandler(UpdateAvailable);
-            AutoUpdate.CheckingFailed +=
-                new FailHandler(UpdateCheckFailed);
-            AutoUpdate.UpToDate +=
-                new SuccessHandler(Updated);
-
             if (!AutoUpdate.ClosingForInstall)
             {
                 LoadSettings();
             }
-        }
-
-        void UpdateCheckFailed(object s, FailArgs e)
-        {
-            LblStatus.Text = "ERROR: Failed to check.";
-        }
-        void Updated(object s, SuccessArgs e)
-        {
-            MessageBox.Show("Up to date!");
-        }
-
-        void UpdateAvailable(object s, EventArgs e)
-        {
-            MessageBox.Show("Test Dialog");
         }
 
         void LoadSettings()
@@ -75,7 +54,8 @@ namespace FieldSubmiter
 
             //Add version to title
             string version = "v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." +
-                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString()+ "." +
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString();
 #if DEBUG
             version += " [debug]";
 #endif
@@ -98,7 +78,7 @@ namespace FieldSubmiter
 
         private void CheckForUpdates(object sender, EventArgs e)
         {
-            AutoUpdate.ForceCheckForUpdate();
+            AutoUpdate.ForceCheckForUpdate(true);
         }
 
         private void OnNumberChanged(object sender, EventArgs e)
@@ -230,7 +210,7 @@ namespace FieldSubmiter
             options.Dispose();
         }
 
-        string msgBody = "!!Job Number\r\n" +
+        readonly string msgBody = "!!Job Number\r\n" +
             "{JOBNO}\r\n" +
             "!!Purpose\r\n" +
             "{PURPOSE}\r\n" +

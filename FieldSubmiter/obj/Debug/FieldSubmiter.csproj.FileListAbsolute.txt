@@ -14,7 +14,6 @@ C:\Users\Nathan White\source\repos\ODG\FieldSubmiter\obj\Debug\FieldSubmiter.Opt
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe.config
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.pdb
-C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\AutomaticUpdater.dll
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csprojAssemblyReference.cache
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.MainForm.resources
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.Options.resources
@@ -41,3 +40,9 @@ D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePa
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.xml
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\wyUpdate.exe
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\client.wyc
