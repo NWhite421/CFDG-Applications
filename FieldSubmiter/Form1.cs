@@ -48,6 +48,7 @@ namespace FieldSubmiter
             }
 
             MainArea:
+
             //Populate the purpose list
             var PurposeList = Properties.Settings.Default.Purposes.Cast<string>().ToList();
             CbPurpose.Items.AddRange(PurposeList.ToArray());
@@ -69,6 +70,15 @@ namespace FieldSubmiter
             JobNumbers = new List<string> { };
             Files = new List<string> { };
 
+            if (!Properties.Settings.Default.SendMethod)
+            {
+                ToolStripButton item = new ToolStripButton("Modify Recepiants");
+                contextMenuStrip.Items.Insert(0, item);
+            }
+
+            TsMiOptions.Click += new EventHandler(Optionsclick);
+
+            LblStatus.Text = "Ready to go.";
         }
 
         private void AutoUpdate_ClosingAborted(object sender, EventArgs e)
@@ -78,7 +88,6 @@ namespace FieldSubmiter
 
         private void CheckForUpdates(object sender, EventArgs e)
         {
-            AutoUpdate.ForceCheckForUpdate(true);
         }
 
         private void OnNumberChanged(object sender, EventArgs e)
@@ -201,13 +210,6 @@ namespace FieldSubmiter
                 e.SuppressKeyPress = true;
                 AddValue(CmdAddNumber, new EventArgs());
             }
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            Options options = new Options();
-            options.ShowDialog();
-            options.Dispose();
         }
 
         readonly string msgBody = "!!Job Number\r\n" +
@@ -356,5 +358,19 @@ namespace FieldSubmiter
             }
         }
 
+        private void Optionsclick(object sender, EventArgs e)
+        {
+            Options options = new Options();
+            options.ShowDialog();
+            options.Dispose();
+        }
+
+        private void CmdContext_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+            Point ptLowerLeft = new Point(0, btnSender.Height);
+            ptLowerLeft = btnSender.PointToScreen(ptLowerLeft);
+            contextMenuStrip.Show(ptLowerLeft);
+        }
     }
 }

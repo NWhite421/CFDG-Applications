@@ -26,7 +26,6 @@ C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Debug\FieldS
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe.config
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.exe
 D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\FieldSubmiter.pdb
-D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\AutomaticUpdater.dll
 D:\App Development\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.csprojAssemblyReference.cache
 D:\App Development\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.MainForm.resources
 D:\App Development\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.Options.resources
@@ -46,3 +45,5 @@ C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Micros
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\wyUpdate.exe
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\client.wyc
+D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\wyUpdate.exe
+D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\client.wyc

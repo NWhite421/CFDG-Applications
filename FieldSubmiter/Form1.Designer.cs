@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.label1 = new System.Windows.Forms.Label();
             this.TxtNumber = new System.Windows.Forms.MaskedTextBox();
             this.LbNumbers = new System.Windows.Forms.ListBox();
@@ -43,16 +45,18 @@
             this.CmdAddFiles = new System.Windows.Forms.Button();
             this.CmdSubmit = new System.Windows.Forms.Button();
             this.LblStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.CmdUpdate = new System.Windows.Forms.Button();
+            this.CmdContext = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.TsMiOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.AutoUpdate = new wyDay.Controls.AutomaticUpdater();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AutoUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 33);
             this.label1.Name = "label1";
@@ -62,8 +66,6 @@
             // 
             // TxtNumber
             // 
-            this.TxtNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtNumber.Location = new System.Drawing.Point(117, 30);
             this.TxtNumber.Mask = "00-00-000";
             this.TxtNumber.Name = "TxtNumber";
@@ -74,8 +76,6 @@
             // 
             // LbNumbers
             // 
-            this.LbNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LbNumbers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LbNumbers.FormattingEnabled = true;
             this.LbNumbers.ItemHeight = 20;
@@ -89,8 +89,6 @@
             // 
             // CmdAddNumber
             // 
-            this.CmdAddNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CmdAddNumber.Enabled = false;
             this.CmdAddNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CmdAddNumber.Location = new System.Drawing.Point(12, 150);
@@ -103,8 +101,6 @@
             // 
             // CmdRemoveNumber
             // 
-            this.CmdRemoveNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CmdRemoveNumber.Enabled = false;
             this.CmdRemoveNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CmdRemoveNumber.Location = new System.Drawing.Point(143, 150);
@@ -117,8 +113,6 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 192);
             this.label2.Name = "label2";
@@ -128,8 +122,6 @@
             // 
             // CbPurpose
             // 
-            this.CbPurpose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CbPurpose.FormattingEnabled = true;
             this.CbPurpose.Location = new System.Drawing.Point(12, 215);
             this.CbPurpose.Name = "CbPurpose";
@@ -138,10 +130,8 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 246);
+            this.label3.Location = new System.Drawing.Point(284, 192);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 20);
             this.label3.TabIndex = 7;
@@ -149,21 +139,17 @@
             // 
             // TxtNotes
             // 
-            this.TxtNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtNotes.Location = new System.Drawing.Point(12, 269);
+            this.TxtNotes.Location = new System.Drawing.Point(284, 215);
             this.TxtNotes.Name = "TxtNotes";
             this.TxtNotes.Size = new System.Drawing.Size(256, 26);
             this.TxtNotes.TabIndex = 8;
             // 
             // LbFiles
             // 
-            this.LbFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LbFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LbFiles.FormattingEnabled = true;
             this.LbFiles.ItemHeight = 20;
-            this.LbFiles.Location = new System.Drawing.Point(12, 329);
+            this.LbFiles.Location = new System.Drawing.Point(284, 59);
             this.LbFiles.Name = "LbFiles";
             this.LbFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.LbFiles.Size = new System.Drawing.Size(256, 82);
@@ -172,10 +158,8 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 300);
+            this.label4.Location = new System.Drawing.Point(284, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 20);
             this.label4.TabIndex = 9;
@@ -183,11 +167,9 @@
             // 
             // CmdRemoveFiles
             // 
-            this.CmdRemoveFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CmdRemoveFiles.Enabled = false;
             this.CmdRemoveFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdRemoveFiles.Location = new System.Drawing.Point(143, 417);
+            this.CmdRemoveFiles.Location = new System.Drawing.Point(415, 147);
             this.CmdRemoveFiles.Name = "CmdRemoveFiles";
             this.CmdRemoveFiles.Size = new System.Drawing.Size(125, 37);
             this.CmdRemoveFiles.TabIndex = 15;
@@ -197,10 +179,8 @@
             // 
             // CmdAddFiles
             // 
-            this.CmdAddFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CmdAddFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdAddFiles.Location = new System.Drawing.Point(12, 417);
+            this.CmdAddFiles.Location = new System.Drawing.Point(284, 147);
             this.CmdAddFiles.Name = "CmdAddFiles";
             this.CmdAddFiles.Size = new System.Drawing.Size(125, 37);
             this.CmdAddFiles.TabIndex = 14;
@@ -210,10 +190,8 @@
             // 
             // CmdSubmit
             // 
-            this.CmdSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.CmdSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdSubmit.Location = new System.Drawing.Point(12, 478);
+            this.CmdSubmit.Location = new System.Drawing.Point(12, 249);
             this.CmdSubmit.Name = "CmdSubmit";
             this.CmdSubmit.Size = new System.Drawing.Size(256, 55);
             this.CmdSubmit.TabIndex = 16;
@@ -226,36 +204,49 @@
             this.LblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblStatus.AutoSize = true;
-            this.LblStatus.Location = new System.Drawing.Point(8, 579);
+            this.LblStatus.Location = new System.Drawing.Point(8, 307);
             this.LblStatus.Name = "LblStatus";
-            this.LblStatus.Size = new System.Drawing.Size(0, 20);
+            this.LblStatus.Size = new System.Drawing.Size(27, 20);
             this.LblStatus.TabIndex = 17;
+            this.LblStatus.Text = "ph";
             // 
-            // button1
+            // CmdContext
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(143, 539);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 37);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Options";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.CmdContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CmdContext.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.CmdContext.Location = new System.Drawing.Point(274, 249);
+            this.CmdContext.Name = "CmdContext";
+            this.CmdContext.Size = new System.Drawing.Size(55, 55);
+            this.CmdContext.TabIndex = 23;
+            this.CmdContext.Text = "▼";
+            this.CmdContext.UseVisualStyleBackColor = true;
+            this.CmdContext.Click += new System.EventHandler(this.CmdContext_Click);
             // 
-            // CmdUpdate
+            // contextMenuStrip
             // 
-            this.CmdUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CmdUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdUpdate.Location = new System.Drawing.Point(12, 539);
-            this.CmdUpdate.Name = "CmdUpdate";
-            this.CmdUpdate.Size = new System.Drawing.Size(125, 37);
-            this.CmdUpdate.TabIndex = 19;
-            this.CmdUpdate.Text = "Update";
-            this.CmdUpdate.UseVisualStyleBackColor = true;
-            this.CmdUpdate.Click += new System.EventHandler(this.CheckForUpdates);
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.TsMiOptions,
+            this.checkUpdate});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(167, 54);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            // 
+            // TsMiOptions
+            // 
+            this.TsMiOptions.Name = "TsMiOptions";
+            this.TsMiOptions.Size = new System.Drawing.Size(166, 22);
+            this.TsMiOptions.Text = "Options";
+            // 
+            // checkUpdate
+            // 
+            this.checkUpdate.Name = "checkUpdate";
+            this.checkUpdate.Size = new System.Drawing.Size(166, 22);
+            this.checkUpdate.Text = "Check for Update";
             // 
             // AutoUpdate
             // 
@@ -266,6 +257,7 @@
             this.AutoUpdate.Name = "AutoUpdate";
             this.AutoUpdate.Size = new System.Drawing.Size(16, 16);
             this.AutoUpdate.TabIndex = 20;
+            this.AutoUpdate.ToolStripItem = this.checkUpdate;
             this.AutoUpdate.WaitBeforeCheckSecs = 1;
             this.AutoUpdate.wyUpdateCommandline = null;
             this.AutoUpdate.ClosingAborted += new System.EventHandler(this.AutoUpdate_ClosingAborted);
@@ -275,10 +267,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(280, 612);
+            this.ClientSize = new System.Drawing.Size(549, 336);
+            this.Controls.Add(this.CmdContext);
             this.Controls.Add(this.AutoUpdate);
-            this.Controls.Add(this.CmdUpdate);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.LblStatus);
             this.Controls.Add(this.CmdSubmit);
             this.Controls.Add(this.CmdRemoveFiles);
@@ -296,11 +287,13 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Submit Data";
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AutoUpdate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -324,9 +317,12 @@
         private System.Windows.Forms.Button CmdAddFiles;
         private System.Windows.Forms.Label LblStatus;
         private System.Windows.Forms.Button CmdSubmit;
-        private System.Windows.Forms.Button CmdUpdate;
-        private System.Windows.Forms.Button button1;
         private wyDay.Controls.AutomaticUpdater AutoUpdate;
+        private System.Windows.Forms.Button CmdContext;
+        private System.Windows.Forms.ToolStripMenuItem checkUpdate;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem TsMiOptions;
     }
 }
 
