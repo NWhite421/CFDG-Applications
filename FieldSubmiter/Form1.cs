@@ -20,6 +20,8 @@ namespace FieldSubmiter
         List<string> JobNumbers { get; set; }
         List<string> Files { get; set; }
 
+        List<string> OverwriteEmails { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
@@ -79,6 +81,15 @@ namespace FieldSubmiter
             TsMiOptions.Click += new EventHandler(Optionsclick);
 
             LblStatus.Text = "Ready to go.";
+        }
+
+        void TempChangeEmails(object s, EventArgs e)
+        {
+            AddRecipiants recipiants = new AddRecipiants();
+            var ret = recipiants.ShowDialog();
+            if (ret == DialogResult.Cancel)
+                return;
+            OverwriteEmails = recipiants.EmailAddresses;
         }
 
         private void AutoUpdate_ClosingAborted(object sender, EventArgs e)
