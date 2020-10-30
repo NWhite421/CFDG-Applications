@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Request a Quote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Request a Quote</h2>
+<h3>Customer Information</h3>
+<form class="form-horizontal">
+    <div class="form-group">
+        <div>
+            <span class="input-group-text">Prefix</span>
+            <select class="form-control input-group" id="CustomerPrefix" style="width: 100px">
+                <option>Dr.</option>
+                <option>Mr.</option>
+                <option>Ms.</option>
+                <option>Mrs.</option>
+                <option>Miss.</option>
+            </select>
+            <span class="input-group-text">Between</span>
+            <input type="text" class="form-control" id="CustomerFirstName" aria-describedby="emailHelp" placeholder="FirstName">
+        </div>
+    </div>
+</form>

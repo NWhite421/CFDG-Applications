@@ -1,0 +1,17 @@
+﻿@{
+    string PageTitle = "Civil3D Plugin";
+    ViewBag.Title = PageTitle;
+}
+
+<div class="jumbotron">
+    <h1 class="display-4 text-center">@PageTitle</h1>
+    <p class="lead text-center">The AutoCAD Civil 3D Plugin (Civil3D Plugin) adds additional functionality, logging, and time-saver functions with both the application and external applications and databases.</p>
+    <p class="text-center">This product is free and open-source under the <a href=@Url.Action("Licenses", "Home")>GNU General Public License v3.0 (GNU GPLv3)</a> and <a href="https://www.autodesk.com/company/legal-notices-trademarks">Autodesk Product Licensing</a> where applicable</p>
+    <hr class="my-4" />
+    <p class="text-center">
+        <span class="btn btn-info">Version: 0.1.0</span>
+        <span class="btn btn-info">Build: Pre-Alpha</span>
+        <button class="btn btn-primary disabled" action="javascript:void(0)">Download</button>
+        <button class="btn btn-warning disabled" >Support</button>
+    </p>
+</div>

@@ -1,0 +1,107 @@
+﻿@{
+    string PageTitle = "Field Data Submitter";
+    ViewBag.Title = PageTitle;
+}
+    <script>
+        function openNav() {
+            if (document.getElementById("mySidenav").style.width == "250px") {
+                
+                document.getElementById("mySidenav").style.width = "0px";
+            } else {
+                
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+        }
+
+/* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        } 
+    </script>
+
+<span class="btn btn-primary toc-access" href="javascript:void(0)" onclick="openNav()">T.O.C.</span>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href=@Url.Action("Index","Home")>Home</a></li>
+    <li class="breadcrumb-item"><a href=@Url.Action("Index","Support")>Support</a></li>
+    <li class="breadcrumb-item active">Field Data Submitter</li>
+</ol>
+<div class="jumbotron">
+    <h1 class="display-4 text-center">@PageTitle</h1>
+    <p class="lead text-center">The Field Data Submitter (FDS) allows field crews to automatically send data to the office either by e-mail or TCP Connection.</p>
+    <hr class="my-4" />
+    <p class="text-center">
+        <span class="btn btn-info">Version: 0.9.1</span>
+        <span class="btn btn-info">Build: Beta</span> 
+        <span class="btn btn-secondary">Language: C#</span> 
+        <button class="btn btn-primary" action="javascript:void(0)">Download</button>
+        <button class="btn btn-success" onclick="window.location.href='//github.com/NWhite421/CFDG-Applications/tree/master/FieldSubmiter'">Github</button>
+    </p>
+</div>
+@*<div class="jumbotron">
+    <h2 class="text-center">@PageTitle</h2>
+    <p class="lead text-center">The Field Data Submitter (FDS) allows field crews to automatically send data to the office either by e-mail or TCP Connection.</p>
+    <p class="text-center">
+        <span class="text-info">Version: 0.9.1</span> |
+        <span class="text-info">Build: Beta</span> |
+        <a href="javascript:void(0)">Download</a> |
+        <a href="https://github.com/NWhite421/ODG-Master/tree/master/FieldSubmiter">Github</a>
+    </p>
+</div>
+    *@
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="head1" href="#overview" onclick="closeNav()">Overview</a>
+    <a class="head2" href="#main_screen" onclick="closeNav()">Main Window</a>
+    <a class="head3" href="#job_number" onclick="closeNav()">Job Number</a>
+    <a class="head3" href="#purpose" onclick="closeNav()">Purpose</a>
+    <a class="head3" href="#files" onclick="closeNav()">Files</a>
+    <a class="head3" href="#note" onclick="closeNav()">Note</a>
+    <a class="head2" href="#method_screens" onclick="closeNav()">Method-Specific actions</a>
+    <a class="head1" href="#settings" onclick="closeNav()">Settings</a>
+    <a class="head1" href="#Installation" onclick="closeNav()">Installation</a>
+    <a class="head1" href="#first_run" onclick="closeNav()">First-Run Setup</a>
+    <a class="head2" href="#email_settings" onclick="closeNav()">E-Mail Settings</a>
+    <a class="head2" href="#tcp_settings" onclick="closeNav()">TCP Settings</a>
+</div>
+
+<div id="content-wrap">
+    <h1 id="overview">Overview</h1>
+    <p> The <b>Field Data Submitter</b> allows a party chief in the field to quickly, efficiently, and accurately send in data to office personnel. This application's main design philosophy is <i>Usability in field conditions with simple layout, easy access, and redundancy.</i> This means that this program strives to be straight forward, easy to use on field tablets, and be hard to fail or have an error. The application composes of an easy-to-use interface with built-in checks and securities. These features prevent accidental e-mail / data submissions as well as accidental touch protections.<br /><br />If you have any questions, comments, or suggestions; please e-mail me at <a href="mailto:nwhite@hnhsurvey.com">nwhite@hnhsurvey.com</a></p>
+    <h2 id="main_screen">Main Window</h2>
+    <div style="text-align: center;">
+        <a href="../../Content/Images/field data submitter/main window.png">
+            <img class="screenshot" src="../../Content/Images/field data submitter/main window.png" alt="..The main window of the program (0.9.1 debug)." style="width: 600px;" />
+        </a>
+    </div>
+    <p>The main screen is where all the general actions take place. There are four things the user has to worry about; <i>Job Number, Purpose, Files, Note</i>. Ensuring that just this information is correctly inputted removes the possibility of messing up the "back-end" of the process. Further, if using the E-Mail method of data submission, this will automatically pre-format the e-mail to work with <a href="">E-Mail Parser</a> application. For more information on this, see <a href="#settings">Settings</a>.</p>
+    <h4 id="job_number">Job Number</h4>
+    <p>The job number is the most important thing that you can enter. If this is wrong, the data you send in can be placed in the wrong project or not be fully processed at all.</p>
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Warning!</h4>
+        <p class="mb-0">The most important peice of information is the job number. If you do not enter this correctly, the information will be lost and you may have to resubmit or revisit the site.</p>
+    </div>
+    <p>You can enter the job number(s) one of two ways. The first is to just type the job number. The program will notify you if the number is not correctly inputted in the <i>yy-mm-nnn</i> format. If you have only one job number to submit, you can either leave this information in the box or click on "ADD" under the list to add the job number to the list. If you have multiple projects with one data submission, you <b>MUST</b> add each job number to the list using the "ADD" button under the job number list.<br />If you have a job number you wish to remove from the list, select the number and hit remove. This will automatically remove the number from the list.</p>
+    <h4 id="purpose">Purpose</h4>
+    <p>The purpose is just a reason for the data. In other words, why were you out there? You can either select a preset option from the dropdown list or type in your own value.</p>
+    <h4 id="files">Files</h4>
+    <p>The files you wish to send in. This can include your text file, AutoCAD® file, or anything else (including pictures). When you press "ADD", a dialog will open to select files (you can select multiple at once). To remove a file, select the file in the list and hit remove. Additionally, the initial directory can be changed via the <a href="#defaultDir">Default Directory</a> setting in the options menu.</p>
+    <h4 id="note">Note</h4>
+    <p>Any additional message you want to send about the data. If installed, the office personnel using <a href="">AutoCAD® Civil 3D® Plugin</a> will see the note when they import the points into CAD. Please keep it short and to the point.</p>
+    <h2 id="method_screens">Method-Specific screens</h2>
+    <div class="alert alert-info">
+        <h4 class="alert-heading">Work In Progress</h4>
+        <p class="mb-0">This information is currently being written and will be updated at the first available opportunity.</p>
+    </div>
+    <h1 id="settings">Settings</h1>
+    <p id="defaultDir">The default directory...</p>
+    <h1 id="Installation">Installation</h1>
+    <h1 id="first_run">First Run Setup</h1>
+    <h2 id="email_settings">E-Mail Settings</h2>
+    <h2 id="tcp_settings">TCP Settings</h2>
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Warning!</h4>
+        <p class="mb-0">The TCP Connection method is not available in version 0.9.1.</p>
+    </div>
+    </div>

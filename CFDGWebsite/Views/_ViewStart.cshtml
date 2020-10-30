@@ -1,0 +1,17 @@
+﻿@{
+    string CurrentController = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+
+    switch (CurrentController)
+    {
+        case "Support":
+        {
+            Layout = "~/Views/Support/_SupportLayout.cshtml";
+            break;
+        }
+        default:
+        {
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        }
+    }
+}

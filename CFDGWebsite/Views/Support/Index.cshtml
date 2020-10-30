@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Support Home Page";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href=@Url.Action("Index","Home")>Home</a></li>
+    <li class="breadcrumb-item active">Support</li>
+</ol>
+<div class="jumbotron">
+    <h1>Support Home</h1>
+    <p class="lead">Welcome to the support page for products created by Central Florida Design Group. Below, you will find individual products and information for them.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Field Data Submitter</h2>
+        <p>
+            The Field Data Submitter (FDS) allows field crews to automatically send data to the office either by e-mail or TCP Connection.
+        </p>
+        <p><a class="btn btn-default" href=@Url.Action("FieldDataSubmitter")>Learn more &raquo;</a></p>
+    </div>
+</div>

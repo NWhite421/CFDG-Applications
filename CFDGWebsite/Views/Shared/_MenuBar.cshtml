@@ -1,0 +1,42 @@
+﻿<script>
+    $(function() {
+            $("#toggle.dropdown-menu li a").click(function() {
+                    //$('.btn.dropdown-toggle').text($(this).text());
+                    
+                }
+            );
+        
+        }
+    );
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">CFDG</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href=@Url.Action("Index", "Home")>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=@Url.Action("About", "Home")>About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=@Url.Action("Contact", "Home")>Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=@Url.Action("Index", "Support")>Support</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu" aria-labelledby="dLabel">
+                    <a class="dropdown-item" href=@Url.Action("FieldDataSubmitter", "Projects")>Field Data Submitter (FSD)</a>
+                    <a class="dropdown-item" href=@Url.Action("Civil3DPlugin", "Projects")>AutoCAD® Civil3D® Plugin</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
