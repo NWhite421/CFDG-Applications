@@ -9,7 +9,6 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.Windows;
 using Autodesk.Civil.ApplicationServices;
 using Autodesk.Civil.DatabaseServices;
 using MDG.Core;
@@ -480,13 +479,9 @@ namespace AcC3D_Plug
         {
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             Editor ed = doc.Editor;
-            var jobNumber = Path.GetFileNameWithoutExtension(doc.Name);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                ed.WriteMessage("Job number could not be determined." + Environment.NewLine);
+            var jobNumber = Functions.GetJobNumber(doc);
+            if (string.IsNullOrEmpty(jobNumber))
                 return;
-            }
             string path = JobNumber.GetPath(jobNumber);
             if (Directory.Exists(path))
             {
@@ -504,13 +499,9 @@ namespace AcC3D_Plug
         {
             var doc = AcApp.DocumentManager.MdiActiveDocument;
             Editor ed = doc.Editor;
-            var jobNumber = Path.GetFileNameWithoutExtension(doc.Name);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                ed.WriteMessage("Job number could not be determined." + Environment.NewLine);
+            var jobNumber = Functions.GetJobNumber(doc);
+            if (string.IsNullOrEmpty(jobNumber))
                 return;
-            }
             string path = JobNumber.GetPath(jobNumber) + "\\Comp";
             if (Directory.Exists(path))
             {
@@ -697,32 +688,6 @@ namespace AcC3D_Plug
             // Send the command to the application in the current document
             dwg.SendStringToExecute(cmd.CommandParameter as string, true, false, true);
 
-        }
-    }
-
-    // TODO: Send to a functions class.
-    public class Functions
-    {
-        public static string GetJobNumber(Document document)
-        {
-            var jobNumber = Path.GetFileNameWithoutExtension(document.Name);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                return "";
-            }
-            return jobNumber;
-        }
-
-        public static string GetJobNumber(string document)
-        {
-            var jobNumber = Path.GetFileNameWithoutExtension(document);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                return "";
-            }
-            return jobNumber;
         }
     }
 

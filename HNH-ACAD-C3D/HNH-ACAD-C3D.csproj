@@ -76,6 +76,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Functions.cs" />
     <Compile Include="dialogs\ExportPoints.cs">
       <SubType>Form</SubType>
     </Compile>
