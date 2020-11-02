@@ -76,10 +76,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calc\ExportPoints.cs">
+    <Compile Include="dialogs\ExportPoints.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calc\ExportPoints.Designer.cs">
+    <Compile Include="dialogs\ExportPoints.Designer.cs">
       <DependentUpon>ExportPoints.cs</DependentUpon>
     </Compile>
     <Compile Include="dialogs\AssetTableManager.cs">
@@ -94,40 +94,40 @@
     <Compile Include="dialogs\GetJobNumber.Designer.cs">
       <DependentUpon>GetJobNumber.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export.cs" />
-    <Compile Include="ExportForm.cs">
+    <Compile Include="classes\Export.cs" />
+    <Compile Include="dialogs\ExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExportForm.Designer.cs">
+    <Compile Include="dialogs\ExportForm.Designer.cs">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calc\Calc.cs" />
-    <Compile Include="Extensions\PGExtensions.cs" />
-    <Compile Include="HelpTab\HelpTab.cs" />
-    <Compile Include="HelpTab\SendReport.cs">
+    <Compile Include="classes\Computations.cs" />
+    <Compile Include="extensions\PGExtensions.cs" />
+    <Compile Include="classes\HelpTab.cs" />
+    <Compile Include="dialogs\SendReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelpTab\SendReport.Designer.cs">
+    <Compile Include="dialogs\SendReport.Designer.cs">
       <DependentUpon>SendReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImportData.cs" />
+    <Compile Include="classes\ImportData.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="NoteViewer\NoteExporter.cs">
+    <Compile Include="dialogs\NoteExporter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NoteViewer\NoteExporter.Designer.cs">
+    <Compile Include="dialogs\NoteExporter.Designer.cs">
       <DependentUpon>NoteExporter.cs</DependentUpon>
     </Compile>
-    <Compile Include="NoteViewer\Notes.cs">
+    <Compile Include="dialogs\Notes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NoteViewer\Notes.Designer.cs">
+    <Compile Include="dialogs\Notes.Designer.cs">
       <DependentUpon>Notes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectInformation.cs">
+    <Compile Include="userControl\ProjectInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ProjectInformation.Designer.cs">
+    <Compile Include="userControl\ProjectInformation.Designer.cs">
       <DependentUpon>ProjectInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,7 +144,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Calc\ExportPoints.resx">
+    <EmbeddedResource Include="dialogs\ExportPoints.resx">
       <DependentUpon>ExportPoints.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dialogs\AssetTableManager.resx">
@@ -153,19 +153,19 @@
     <EmbeddedResource Include="dialogs\GetJobNumber.resx">
       <DependentUpon>GetJobNumber.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportForm.resx">
+    <EmbeddedResource Include="dialogs\ExportForm.resx">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelpTab\SendReport.resx">
+    <EmbeddedResource Include="dialogs\SendReport.resx">
       <DependentUpon>SendReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NoteViewer\NoteExporter.resx">
+    <EmbeddedResource Include="dialogs\NoteExporter.resx">
       <DependentUpon>NoteExporter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NoteViewer\Notes.resx">
+    <EmbeddedResource Include="dialogs\Notes.resx">
       <DependentUpon>Notes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectInformation.resx">
+    <EmbeddedResource Include="userControl\ProjectInformation.resx">
       <DependentUpon>ProjectInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -177,7 +177,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C3DLogging.cs" />
+    <Compile Include="classes\C3DLogging.cs" />
     <None Include="images\placehold 16.png" />
   </ItemGroup>
   <ItemGroup>

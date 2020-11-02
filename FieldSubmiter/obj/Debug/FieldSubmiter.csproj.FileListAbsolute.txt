@@ -45,5 +45,4 @@ C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Micros
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\wyUpdate.exe
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Debug\client.wyc
-D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\wyUpdate.exe
-D:\App Development\ODG-Master\FieldSubmiter\bin\Debug\client.wyc
+D:\App Development\ODG-Master\FieldSubmiter\obj\Debug\FieldSubmiter.AddRecipiants.resources

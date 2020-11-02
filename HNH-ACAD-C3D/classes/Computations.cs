@@ -15,7 +15,7 @@ using AcApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 namespace AcC3D_Plug
 {
-    public class Calc
+    public class Computations
     {
         internal static List<string> controlCodes = new List<string>
         {
@@ -179,19 +179,20 @@ namespace AcC3D_Plug
             Editor adEd = acDoc.Editor;
             CivilDocument cApp = Autodesk.Civil.ApplicationServices.CivilApplication.ActiveDocument;
 
-            string purpose = "";
             List<string> points = new List<string> { };
             string pointStr = "";
             string descriptionStr = "";
 
             //Get the purpose of the points
-            PromptStringOptions pStrOpts = new PromptStringOptions("\nEnter the purpose: ");
-            pStrOpts.AllowSpaces = true;
+            PromptStringOptions pStrOpts = new PromptStringOptions("\nEnter the purpose: ")
+            {
+                AllowSpaces = true
+            };
             PromptResult pRlt = adEd.GetString(pStrOpts);
 
             //If the string was empty (or null somehow)
             if (string.IsNullOrEmpty(pRlt.StringResult)) { adEd.WriteMessage("\nThe string entered was empty, please try again."); return; }
-            purpose = pRlt.StringResult;
+            string purpose = pRlt.StringResult;
 
             //Selection method
             PromptKeywordOptions pKeyOpts = new PromptKeywordOptions("\nPlease select a method of point selection: ");
@@ -207,8 +208,10 @@ namespace AcC3D_Plug
             {
                 case "List":
                     {
-                        pStrOpts = new PromptStringOptions("\nEnter the point range using dashes (-) and commas (,): ");
-                        pStrOpts.AllowSpaces = true;
+                        pStrOpts = new PromptStringOptions("\nEnter the point range using dashes (-) and commas (,): ")
+                        {
+                            AllowSpaces = true
+                        };
                         pRlt = adEd.GetString(pStrOpts);
                         if (string.IsNullOrEmpty(pRlt.StringResult)) { adEd.WriteMessage("\nThe string entered was empty, please try again."); return; }
                         pointStr = pRlt.StringResult;
@@ -240,8 +243,10 @@ namespace AcC3D_Plug
                     }
                 case "Descriptions":
                     {
-                        pStrOpts = new PromptStringOptions("\nEnter the raw descriptions including wildcards (*) and commas (,): ");
-                        pStrOpts.AllowSpaces = true;
+                        pStrOpts = new PromptStringOptions("\nEnter the raw descriptions including wildcards (*) and commas (,): ")
+                        {
+                            AllowSpaces = true
+                        };
                         pRlt = adEd.GetString(pStrOpts);
                         if (string.IsNullOrEmpty(pRlt.StringResult)) { adEd.WriteMessage("\nThe string entered was empty, please try again."); return; }
                         descriptionStr = pRlt.StringResult;

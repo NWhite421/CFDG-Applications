@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Autodesk.AutoCAD;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
@@ -15,26 +12,19 @@ using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.Windows;
 using Autodesk.Civil.ApplicationServices;
 using Autodesk.Civil.DatabaseServices;
-using Autodesk.Civil.Settings;
-using Autodesk.Civil.Runtime;
 using MDG.Core;
 using Microsoft.Win32.SafeHandles;
 using Autodesk.Windows;
-using System.ComponentModel;
 using System.Windows.Input;
-using AcApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using System.Reflection;
 using System.Diagnostics;
 using Autodesk.AutoCAD.Colors;
-using System.Windows.Media;
-using System.Drawing;
-using System.Windows.Media.Imaging;
-using Autodesk.AutoCAD.Ribbon;
-using System.Windows;
-using Autodesk.AutoCAD.GraphicsInterface;
+using AcApp = Autodesk.AutoCAD.ApplicationServices.Application;
+using C3DApp = Autodesk.Civil.ApplicationServices.CivilApplication;
 
 namespace AcC3D_Plug
 {
+
 
     public class Commands : IExtensionApplication
     {
@@ -44,13 +34,13 @@ namespace AcC3D_Plug
         /// </summary>
         void IExtensionApplication.Initialize()
         {
-            //Add event handler for every drawing opened.
+            // Add event handler for every drawing opened.
             AcApp.DocumentManager.DocumentCreated += new DocumentCollectionEventHandler(LoadDWG);
 
-            //Add event handler for every drawing closed.
+            // Add event handler for every drawing closed.
             AcApp.DocumentManager.DocumentDestroyed += new DocumentDestroyedEventHandler(UnLoadDWG);
 
-            //Add event handler when AutoCAD goes idle (removes itself after first run to bypass bullshit).
+            // Add event handler when AutoCAD goes idle (removes itself after first run to bypass bullshit).
             Autodesk.AutoCAD.ApplicationServices.Application.Idle += new EventHandler(OnAppLoad);
 
         }
@@ -61,12 +51,13 @@ namespace AcC3D_Plug
         /// </summary>
         public void OnAppLoad(object s, EventArgs e)
         {
-            //Add custom ribbon to RibbonControl
+            // Add custom ribbon to RibbonControl
             RibbonControl ribbon = ComponentManager.Ribbon;
             if (ribbon != null)
             {
                 EstablishTab();
-                //Remove this event handler as to not fire again.
+                // Remove this event handler as to not fire again.
+                // Ensures that the tab is established on startup, but will not create additional.
                 Autodesk.AutoCAD.ApplicationServices.Application.Idle -= OnAppLoad;
             }
 
@@ -79,36 +70,7 @@ namespace AcC3D_Plug
         /// </summary>
         public void LoadDWG(object s, DocumentCollectionEventArgs e)
         {
-            //Log job opening.
-            //LogJobOpen();
-            /*if(AcApp.DocumentManager.MdiActiveDocument.IsNamedDrawing)
-            {
-                AcApp.DocumentManager.MdiActiveDocument.SendStringToExecute("UPDATEPALETTE ", false, false, true);
-            }*/
-        }
-
-        /// <summary>
-        /// Logs to the ActiveDocuments job log that the drawing was opened.
-        /// </summary>
-        private void LogJobOpen()
-        {
-            var doc = AcApp.DocumentManager.MdiActiveDocument;
-            Editor ed = doc.Editor;
-            var jobNumber = Path.GetFileNameWithoutExtension(doc.Name);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                ed.WriteMessage("Job number could not be determined." + Environment.NewLine);
-                return;
-            }
-
-            string name = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-
-            ed.WriteMessage($"Entry added to log for enter: {Environment.NewLine}" +
-                $"Name: {name}{Environment.NewLine}" +
-                $"Date: {DateTime.Now:MM-dd-yy hh-mm-ss tt}{Environment.NewLine}");
-            Logging.LogFileOpen(jobNumber);
-
+            //TODO: Impliment logging features and code cleanup.
         }
 
         /// <summary>
@@ -116,14 +78,11 @@ namespace AcC3D_Plug
         /// </summary>
         public static void UnLoadDWG(object s, DocumentDestroyedEventArgs e)
         {
-            var doc = e.FileName;
-            var jobNumber = Functions.GetJobNumber(doc);
-            if (string.IsNullOrEmpty(jobNumber)) return;
-            //Logging.LogFileClose(jobNumber);
+            //TODO: Impliment logging features and code cleanup.
         }
 
         /// <summary>
-        /// Fires once when the plugin is unloaded(?)
+        /// Fires once when the plugin is unloaded(? assumes when either plugin crashes or application is closed)
         /// </summary>
         void IExtensionApplication.Terminate()
         {
@@ -134,6 +93,7 @@ namespace AcC3D_Plug
 
         #region RIBBON HANDLING
 
+        #region DEFAULT DEFINITIONS
         /// <summary>
         /// Large placeholder button (vertical)
         /// </summary>
@@ -150,9 +110,11 @@ namespace AcC3D_Plug
             CommandParameter = "._PLACEHOLDER ",
         };
 
+
         /// <summary>
         /// Small placeholder button (horizontal)
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "Generic definition for future use")]
         private readonly RibbonButton ButtonSmall = new RibbonButton
         {
             Text = "PLACEHOLDER",
@@ -177,6 +139,9 @@ namespace AcC3D_Plug
             ed.WriteMessage("Command not implimented yet..." + Environment.NewLine);
         }
 
+        #endregion
+
+        #region TAB DEFINITIONS
         /// <summary>
         /// Create tab and add panels to tab.
         /// </summary>
@@ -185,46 +150,33 @@ namespace AcC3D_Plug
         {
             //Add Ribbon
             RibbonControl ribbon = ComponentManager.Ribbon;
+
+            // If the RibbonControl is established, then initialize our tab.
             if (ribbon != null)
             {
+                // If the Ribbon already exists, don't create another.
                 RibbonTab rtab = ribbon.FindTab("HNHSurvey");
                 if (rtab != null)
                 {
-                    ribbon.Tabs.Remove(rtab);
+                    return;
                 }
+
                 rtab = new RibbonTab
                 {
-                    Title = "H&H Survey",
+                    Title = "H & H Survey",
                     Id = "HNHSurvey"
                 };
+                rtab.Panels.Add(AddProMgmtPanel()); // Project Management Group
+                rtab.Panels.Add(AddCompPanel());    // Computations Group
+                rtab.Panels.Add(HelpPanel());       // Help Group
+
+                // Display tab in the RibbonControl for the user.
                 ribbon.Tabs.Add(rtab);
-                //rtab.Panels.Add(AddImportPanel());
-                rtab.Panels.Add(AddProMgmtPanel());
-                rtab.Panels.Add(AddCompPanel());
-                rtab.Panels.Add(HelpPanel());
-                //rtab.Panels.Add(AddExportPanel());
-                var doc = AcApp.DocumentManager.MdiActiveDocument;
-                Editor ed = doc.Editor;
-                ed.WriteMessage("Panel loaded successfully..." + Environment.NewLine);
+
+                // Let the user know this succeeded.
+                AcApp.DocumentManager.MdiActiveDocument.Editor.WriteMessage("Panel loaded successfully..." + Environment.NewLine);
             }
 
-            //ShowProjectPallete();
-        }
-
-        static CustomPaletteSet palette;
-
-        [CommandMethod("ProjectManagementPallete")]
-        public void ShowProjectPallete()
-        {
-            //Add palleteSet
-            if (palette == null) palette = new CustomPaletteSet();
-            palette.Visible = true;
-
-        }
-
-        public void UpdatePalette(string path)
-        {
-            
         }
 
         /// <summary>
@@ -234,16 +186,22 @@ namespace AcC3D_Plug
         // TODO: Refactor first buttons to copy / clean up.
         public RibbonPanel AddProMgmtPanel()
         {
+            // Tab -> RibbonPanels[] -> RibbonPanel -> RibbonPanelSource -> RibbonButton(s)
+            // Establish the source control for the panel.
             RibbonPanelSource rps = new RibbonPanelSource
             {
                 Title = "Project Management",
                 Name = "Project Management"
             };
+
+            // Establish output RibbonPanel
             RibbonPanel rp = new RibbonPanel
             {
                 Source = rps
             };
 
+            // Open folders on server for project.
+            // Establish the split button control to add options to.
             var OpenProjectSplit = new RibbonSplitButton
             {
                 Text = "SplitButton",
@@ -257,6 +215,7 @@ namespace AcC3D_Plug
                 Orientation = System.Windows.Controls.Orientation.Vertical
             };
 
+            // Establish our individual buttons
             RibbonButton OpenProjectFolder = ButtonLarge.Clone() as RibbonButton;
             OpenProjectFolder.Text = $"Open{Environment.NewLine}Project";
             OpenProjectFolder.CommandParameter = "._OpenProjectFolder ";
@@ -267,102 +226,21 @@ namespace AcC3D_Plug
             OpenCompFolder.CommandParameter = "._OpenCompFolder ";
             OpenCompFolder.LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Goto_Folder);
 
-            /*var OpenProFolderBtn = new RibbonButton
-            {
-                Text = "Open Project Folder",
-                ShowImage = true,
-                ShowText = true,
-                Image = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_small),
-                LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Goto_Folder),
-                Orientation = System.Windows.Controls.Orientation.Horizontal,
-                Size = RibbonItemSize.Standard,
-                CommandHandler = new RibbonButtonHandler(),
-                CommandParameter = "._OPENPROJECTFOLDER "
-            };
-
-            var AddAdtlDocBtn = ButtonLarge.Clone() as RibbonButton;
-            AddAdtlDocBtn.Text = $"Add Additional{Environment.NewLine}Info";
-
-            var XrefProjectSplitBtn = new RibbonSplitButton
-            {
-                Text = "SplitButton",
-                CommandHandler = new RibbonButtonHandler(),
-                ShowImage = true,
-                ShowText = true,
-                Image = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_large),
-                LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_large),
-                IsSplit = true,
-                Size = RibbonItemSize.Large,
-                Orientation = System.Windows.Controls.Orientation.Vertical
-            };
-            var XRefBtn1 = new RibbonButton
-            {
-                Text = "X-Ref Drawing",
-                ShowImage = true,
-                ShowText = true,
-                Image = IntFunctions.BitmapToImageSource(Properties.Resources.xref_attach),
-                LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.xref_attach),
-                Orientation = System.Windows.Controls.Orientation.Horizontal,
-                Size = RibbonItemSize.Standard,
-                CommandHandler = new RibbonButtonHandler(),
-                CommandParameter = "._XREFFROMPROJECT "
-            };
-            var XRefBtn2 = new RibbonButton
-            {
-                Text = "From another project",
-                ShowImage = true,
-                ShowText = true,
-                Image = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_large),
-                LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.xref_find),
-                Orientation = System.Windows.Controls.Orientation.Horizontal,
-                Size = RibbonItemSize.Standard,
-                CommandHandler = new RibbonButtonHandler(),
-                CommandParameter = "._XREFFROMANOTHERPROJECT "
-            };*/
-
-
-            //rps.Items.Add(XrefProjectSplitBtn);
+            // Add our individual buttons to the split button container
             OpenProjectSplit.Items.Add(OpenProjectFolder);
             OpenProjectSplit.Items.Add(OpenCompFolder);
+
+            // Add our split button to the RibbonPanelSource
             rps.Items.Add(OpenProjectSplit);
 
+            // Return the RibbonPanel
             return rp;
         }
 
         /// <summary>
-        /// Import panel creation
+        /// Help panel creation
         /// </summary>
-        /// <returns>Import panel</returns>
-        public RibbonPanel AddImportPanel()
-        {
-            RibbonPanelSource rps = new RibbonPanelSource
-            {
-                Title = "Import",
-                Name = "Import",
-                
-            };
-            RibbonPanel rp = new RibbonPanel
-            {
-                Source = rps
-            };
-
-            var ImpFieldDataBtn = ButtonLarge.Clone() as RibbonButton;
-            ImpFieldDataBtn.Text = $"Import Field{Environment.NewLine}Data";
-            ImpFieldDataBtn.Name = "ImportFieldData";
-            ImpFieldDataBtn.LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Field_Import);
-            ImpFieldDataBtn.CommandParameter = "\x03\x03IMPORTJOBDATA ";
-
-            var ImpGeoDataBtn = ButtonLarge.Clone() as RibbonButton;
-            ImpGeoDataBtn.Text = $"Import{Environment.NewLine}Geo Data";
-            ImpGeoDataBtn.Name = "ImportGeoData";
-            ImpGeoDataBtn.CommandParameter = "._mapimport ";
-
-            rps.Items.Add(ImpFieldDataBtn);
-            rps.Items.Add(ImpGeoDataBtn);
-
-            return rp;
-        }
-
+        /// <returns>Help panel</returns>
         public RibbonPanel HelpPanel()
         {
             RibbonPanelSource rps = new RibbonPanelSource
@@ -378,8 +256,6 @@ namespace AcC3D_Plug
 
             RibbonButton ReportIssue = ButtonLarge.Clone() as RibbonButton;
             ReportIssue.Text = $"Report{Environment.NewLine}Issue";
-            ReportIssue.ShowImage = true;
-            ReportIssue.ShowText = true;
             ReportIssue.CommandParameter = "_.OpenHNHTabHelp ";
             ReportIssue.LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Help);
 
@@ -406,17 +282,11 @@ namespace AcC3D_Plug
 
             RibbonButton GroupPoints = ButtonLarge.Clone() as RibbonButton;
             GroupPoints.Text = $"Group Comp{Environment.NewLine}Points";
-            GroupPoints.ShowImage = true;
-            GroupPoints.ShowText = true;
-            GroupPoints.Orientation = System.Windows.Controls.Orientation.Vertical;
             GroupPoints.CommandParameter = "_.CreateGroupOfCalcs ";
             GroupPoints.LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Create_PG);
 
             RibbonButton ExportGroup = ButtonLarge.Clone() as RibbonButton;
             ExportGroup.Text = $"Export Point{Environment.NewLine}Groups";
-            ExportGroup.ShowImage = true;
-            ExportGroup.ShowText = true;
-            ExportGroup.Orientation = System.Windows.Controls.Orientation.Vertical;
             ExportGroup.CommandParameter = "_.ExportPointGroups ";
             ExportGroup.LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.Export_PG);
 
@@ -426,61 +296,29 @@ namespace AcC3D_Plug
             return rp;
         }
 
-        /// <summary>
-        /// Export panel creation
-        /// </summary>
-        /// <returns>Export panel</returns>
-        public RibbonPanel AddExportPanel()
-        {
-            RibbonPanelSource rps = new RibbonPanelSource
-            {
-                Title = "Export",
-                Name = "Export",
+        #endregion
 
-            };
-            RibbonPanel rp = new RibbonPanel
-            {
-                Source = rps
-            };
+        #endregion
 
-            /*var PdfCreationCombo = new RibbonSplitButton
-            {
-                Text = "SplitButton",
-                CommandHandler = new RibbonButtonHandler(),
-                ShowImage = true,
-                ShowText = true,
-                Image = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_large),
-                LargeImage = IntFunctions.BitmapToImageSource(Properties.Resources.placeholder_large),
-                IsSplit = true,
-                Size = RibbonItemSize.Large,
-                Orientation = System.Windows.Controls.Orientation.Vertical
-            };*/
+        #region PALLETE HANDLING
 
-            var previewPDFBtn = ButtonLarge.Clone() as RibbonButton;
-            previewPDFBtn.Text = "Plot to PDF";
-            previewPDFBtn.Name = "Plot to PDF";
-            previewPDFBtn.CommandParameter = "._ExportJobAsPDF ";
 
-            /*var plotPDFBtn = ButtonLarge.Clone() as RibbonButton;
-            plotPDFBtn.Text = "Plot PDF";
-            plotPDFBtn.Name = "Plot PDF";
-            plotPDFBtn.CommandParameter = "._PrintPageAsPDF ";*/
+        //static CustomPaletteSet palette;
 
-            rps.Items.Add(previewPDFBtn);
+        //[CommandMethod("ProjectManagementPallete")]
+        //public void ShowProjectPallete()
+        //{
+        //    //Add palleteSet
+        //    if (palette == null) palette = new CustomPaletteSet();
+        //    palette.Visible = true;
 
-            return rp;
-        }
+        //}
 
         #endregion
 
         #region COMMANDS
 
-        public void AssetTable()
-        {
-            AssetTableManager dialog = new AssetTableManager();
-            dialog.Show();
-        }
-
+        // TODO: Adjust and move to ProjectManagement class
         [CommandMethod("ImportJobData")]
         public static void ImportJobPoints()
         {
@@ -636,78 +474,7 @@ namespace AcC3D_Plug
             ed.Regen();
         }
 
-        [CommandMethod("ViewFullAttributes")]
-        public static void ViewFullObjectProperties()
-        {
-            var doc = AcApp.DocumentManager.MdiActiveDocument;
-            var ed = doc.Editor;
-            var obj = ed.GetEntity("Please select an object");
-
-            ObjectId ent = obj.ObjectId;
-
-            using (Transaction tr = doc.Database.TransactionManager.StartTransaction())
-            {
-                CogoPoint thing = tr.GetObject(ent, OpenMode.ForRead) as CogoPoint;
-            }
-
-        }
-
-        public static List<string> GetPointObjectData()
-        {
-            var doc = AcApp.DocumentManager.MdiActiveDocument;
-            var ed = doc.Editor;
-            var peo = new PromptEntityOptions("\nSelect a point: ");
-            peo.SetRejectMessage("\nPlease select only a Cogo Point.");
-            peo.AddAllowedClass(typeof(CogoPoint), true);
-            var obj = ed.GetEntity(peo);
-
-            if (obj.Status == PromptStatus.OK)
-            {
-                List<string> outp;
-                // at this point we know an entity have been selected and it is a Polyline
-                using (var tr = doc.Database.TransactionManager.StartTransaction())
-                {
-                    var cogoP = (CogoPoint)tr.GetObject(obj.ObjectId, OpenMode.ForRead);
-                    outp = new List<string> { cogoP.PointNumber.ToString(), cogoP.Northing.ToString(), cogoP.Easting.ToString(), cogoP.Elevation.ToString(), cogoP.RawDescription };
-                    tr.Commit();
-                }
-                return outp;
-            }
-            return null;
-        }
-
-        [CommandMethod("OpenNotesForProject")]
-        public static void OpenProjectNotes()
-        {
-            var doc = AcApp.DocumentManager.MdiActiveDocument;
-            Editor ed = doc.Editor;
-            var jobNumber = Path.GetFileNameWithoutExtension(doc.Name);
-            if (jobNumber.Length > 9) jobNumber = jobNumber.Remove(9);
-            if (!JobNumber.TryParse(jobNumber))
-            {
-                ed.WriteMessage("Job number could not be determined." + Environment.NewLine);
-                return;
-            }
-            string path = JobNumber.GetPath(jobNumber);
-            if (Directory.Exists(path))
-            {
-                Notes noteDiag = new Notes(path);
-                AcApp.ShowModelessDialog(noteDiag);
-                ed.WriteMessage("Project notes opened." + Environment.NewLine);
-            }
-            else
-            {
-                ed.WriteMessage("Project folder could not be determined." + Environment.NewLine);
-            }
-        }
-
-        [CommandMethod("OpenNotes")]
-        public static void OpenNotes()
-        {
-            Notes noteDiag = new Notes();
-            AcApp.ShowModelessDialog(noteDiag);
-        }
-
+        // TODO: Move to ProjectManagement class
         [CommandMethod("OpenProjectFolder")]
         public static void OpenProjectFolder()
         {
@@ -731,6 +498,7 @@ namespace AcC3D_Plug
             }
         }
 
+        // TODO: Move to ProjectManagement class
         [CommandMethod("OpenCompFolder")]
         public static void OpenCompFolder()
         {
@@ -755,6 +523,7 @@ namespace AcC3D_Plug
             }
         }
 
+        // TODO: Move to ProjectManagement class
         public static void AttachXRef(string Filename)
         {
             var doc = AcApp.DocumentManager.MdiActiveDocument;
@@ -817,6 +586,7 @@ namespace AcC3D_Plug
            // Logging.LogEntry(jobNumber, "XREF ATTACH", "Attached X-Ref to drawing.");
         }
 
+        // TODO: Move to ProjectManagement class
         [CommandMethod("XREFFROMPROJECT")]
         public static void XrefDwg()
         {
@@ -858,6 +628,7 @@ namespace AcC3D_Plug
             doc.Dispose();
         }
 
+        // TODO: Move to ProjectManagement class
         [CommandMethod("XREFFROMANOTHERPROJECT")]
         public static void XrefDwgFromAnother()
         {
@@ -901,6 +672,7 @@ namespace AcC3D_Plug
 
     }
 
+    // RibbonButton Event Handlers
     /// <summary>
     /// RibbonButton click handler.
     /// </summary>
@@ -917,15 +689,18 @@ namespace AcC3D_Plug
         public void Execute(object parameter)
 
         {
+            // Grab the command associated with the button
             RibbonButton cmd = parameter as RibbonButton;
 
             Document dwg = AcApp.DocumentManager.MdiActiveDocument;
 
+            // Send the command to the application in the current document
             dwg.SendStringToExecute(cmd.CommandParameter as string, true, false, true);
 
         }
     }
 
+    // TODO: Send to a functions class.
     public class Functions
     {
         public static string GetJobNumber(Document document)
@@ -951,6 +726,7 @@ namespace AcC3D_Plug
         }
     }
 
+    // FIX: Maybe impliment the C3D version because I am retarded
     /// <summary>
     /// A point object because I want to
     /// </summary>
@@ -994,18 +770,18 @@ namespace AcC3D_Plug
     }
 
     //For sidebar implimentation (at some point)
-    public class CustomPaletteSet : PaletteSet
-    {
-        public CustomPaletteSet()
-            : base("Project Information", "ProjectManagementPallete", new Guid("9CF9996E-7D0E-4886-8FFA-16604ED9D419"))
-        {
-            Style = PaletteSetStyles.ShowAutoHideButton |
-                    PaletteSetStyles.ShowCloseButton |
-                    PaletteSetStyles.ShowPropertiesMenu;
+    //public class CustomPaletteSet : PaletteSet
+    //{
+    //    public CustomPaletteSet()
+    //        : base("Project Information", "ProjectManagementPallete", new Guid("9CF9996E-7D0E-4886-8FFA-16604ED9D419"))
+    //    {
+    //        Style = PaletteSetStyles.ShowAutoHideButton |
+    //                PaletteSetStyles.ShowCloseButton |
+    //                PaletteSetStyles.ShowPropertiesMenu;
 
-            MinimumSize = new System.Drawing.Size(300,300);
+    //        MinimumSize = new System.Drawing.Size(300,300);
 
-            Add("Tab", new ProjectInformation());
-        }
-    }
+    //        Add("Tab", new ProjectInformation());
+    //    }
+    //}
 }
