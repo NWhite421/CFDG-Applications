@@ -50,15 +50,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TsMiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.checkUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.AutoUpdate = new wyDay.Controls.AutomaticUpdater();
             this.contextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AutoUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Location = new System.Drawing.Point(13, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 20);
             this.label1.TabIndex = 0;
@@ -66,7 +64,7 @@
             // 
             // TxtNumber
             // 
-            this.TxtNumber.Location = new System.Drawing.Point(117, 30);
+            this.TxtNumber.Location = new System.Drawing.Point(118, 12);
             this.TxtNumber.Mask = "00-00-000";
             this.TxtNumber.Name = "TxtNumber";
             this.TxtNumber.Size = new System.Drawing.Size(151, 26);
@@ -79,7 +77,7 @@
             this.LbNumbers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LbNumbers.FormattingEnabled = true;
             this.LbNumbers.ItemHeight = 20;
-            this.LbNumbers.Location = new System.Drawing.Point(12, 62);
+            this.LbNumbers.Location = new System.Drawing.Point(13, 44);
             this.LbNumbers.Name = "LbNumbers";
             this.LbNumbers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.LbNumbers.Size = new System.Drawing.Size(256, 82);
@@ -91,7 +89,7 @@
             // 
             this.CmdAddNumber.Enabled = false;
             this.CmdAddNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdAddNumber.Location = new System.Drawing.Point(12, 150);
+            this.CmdAddNumber.Location = new System.Drawing.Point(13, 132);
             this.CmdAddNumber.Name = "CmdAddNumber";
             this.CmdAddNumber.Size = new System.Drawing.Size(125, 37);
             this.CmdAddNumber.TabIndex = 3;
@@ -103,7 +101,7 @@
             // 
             this.CmdRemoveNumber.Enabled = false;
             this.CmdRemoveNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdRemoveNumber.Location = new System.Drawing.Point(143, 150);
+            this.CmdRemoveNumber.Location = new System.Drawing.Point(144, 132);
             this.CmdRemoveNumber.Name = "CmdRemoveNumber";
             this.CmdRemoveNumber.Size = new System.Drawing.Size(125, 37);
             this.CmdRemoveNumber.TabIndex = 4;
@@ -114,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 192);
+            this.label2.Location = new System.Drawing.Point(13, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 20);
             this.label2.TabIndex = 5;
@@ -123,7 +121,7 @@
             // CbPurpose
             // 
             this.CbPurpose.FormattingEnabled = true;
-            this.CbPurpose.Location = new System.Drawing.Point(12, 215);
+            this.CbPurpose.Location = new System.Drawing.Point(13, 197);
             this.CbPurpose.Name = "CbPurpose";
             this.CbPurpose.Size = new System.Drawing.Size(256, 28);
             this.CbPurpose.TabIndex = 6;
@@ -131,7 +129,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(284, 192);
+            this.label3.Location = new System.Drawing.Point(285, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 20);
             this.label3.TabIndex = 7;
@@ -139,7 +137,7 @@
             // 
             // TxtNotes
             // 
-            this.TxtNotes.Location = new System.Drawing.Point(284, 215);
+            this.TxtNotes.Location = new System.Drawing.Point(285, 197);
             this.TxtNotes.Name = "TxtNotes";
             this.TxtNotes.Size = new System.Drawing.Size(256, 26);
             this.TxtNotes.TabIndex = 8;
@@ -149,7 +147,7 @@
             this.LbFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.LbFiles.FormattingEnabled = true;
             this.LbFiles.ItemHeight = 20;
-            this.LbFiles.Location = new System.Drawing.Point(284, 59);
+            this.LbFiles.Location = new System.Drawing.Point(285, 41);
             this.LbFiles.Name = "LbFiles";
             this.LbFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.LbFiles.Size = new System.Drawing.Size(256, 82);
@@ -159,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(284, 30);
+            this.label4.Location = new System.Drawing.Point(285, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 20);
             this.label4.TabIndex = 9;
@@ -169,7 +167,7 @@
             // 
             this.CmdRemoveFiles.Enabled = false;
             this.CmdRemoveFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdRemoveFiles.Location = new System.Drawing.Point(415, 147);
+            this.CmdRemoveFiles.Location = new System.Drawing.Point(416, 129);
             this.CmdRemoveFiles.Name = "CmdRemoveFiles";
             this.CmdRemoveFiles.Size = new System.Drawing.Size(125, 37);
             this.CmdRemoveFiles.TabIndex = 15;
@@ -180,7 +178,7 @@
             // CmdAddFiles
             // 
             this.CmdAddFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdAddFiles.Location = new System.Drawing.Point(284, 147);
+            this.CmdAddFiles.Location = new System.Drawing.Point(285, 129);
             this.CmdAddFiles.Name = "CmdAddFiles";
             this.CmdAddFiles.Size = new System.Drawing.Size(125, 37);
             this.CmdAddFiles.TabIndex = 14;
@@ -191,7 +189,7 @@
             // CmdSubmit
             // 
             this.CmdSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdSubmit.Location = new System.Drawing.Point(12, 249);
+            this.CmdSubmit.Location = new System.Drawing.Point(13, 231);
             this.CmdSubmit.Name = "CmdSubmit";
             this.CmdSubmit.Size = new System.Drawing.Size(256, 55);
             this.CmdSubmit.TabIndex = 16;
@@ -204,7 +202,7 @@
             this.LblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblStatus.AutoSize = true;
-            this.LblStatus.Location = new System.Drawing.Point(8, 307);
+            this.LblStatus.Location = new System.Drawing.Point(9, 289);
             this.LblStatus.Name = "LblStatus";
             this.LblStatus.Size = new System.Drawing.Size(27, 20);
             this.LblStatus.TabIndex = 17;
@@ -214,7 +212,7 @@
             // 
             this.CmdContext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CmdContext.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.CmdContext.Location = new System.Drawing.Point(274, 249);
+            this.CmdContext.Location = new System.Drawing.Point(275, 231);
             this.CmdContext.Name = "CmdContext";
             this.CmdContext.Size = new System.Drawing.Size(55, 55);
             this.CmdContext.TabIndex = 23;
@@ -248,28 +246,13 @@
             this.checkUpdate.Size = new System.Drawing.Size(166, 22);
             this.checkUpdate.Text = "Check for Update";
             // 
-            // AutoUpdate
-            // 
-            this.AutoUpdate.ContainerForm = this;
-            this.AutoUpdate.DaysBetweenChecks = 1;
-            this.AutoUpdate.GUID = "e99d13f4-49aa-4180-83e2-232a5ff27b3d";
-            this.AutoUpdate.Location = new System.Drawing.Point(8, 8);
-            this.AutoUpdate.Name = "AutoUpdate";
-            this.AutoUpdate.Size = new System.Drawing.Size(16, 16);
-            this.AutoUpdate.TabIndex = 20;
-            this.AutoUpdate.ToolStripItem = this.checkUpdate;
-            this.AutoUpdate.WaitBeforeCheckSecs = 1;
-            this.AutoUpdate.wyUpdateCommandline = null;
-            this.AutoUpdate.ClosingAborted += new System.EventHandler(this.AutoUpdate_ClosingAborted);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(549, 336);
+            this.ClientSize = new System.Drawing.Size(549, 320);
             this.Controls.Add(this.CmdContext);
-            this.Controls.Add(this.AutoUpdate);
             this.Controls.Add(this.LblStatus);
             this.Controls.Add(this.CmdSubmit);
             this.Controls.Add(this.CmdRemoveFiles);
@@ -294,7 +277,6 @@
             this.Name = "MainForm";
             this.Text = "Submit Data";
             this.contextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AutoUpdate)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,7 +299,6 @@
         private System.Windows.Forms.Button CmdAddFiles;
         private System.Windows.Forms.Label LblStatus;
         private System.Windows.Forms.Button CmdSubmit;
-        private wyDay.Controls.AutomaticUpdater AutoUpdate;
         private System.Windows.Forms.Button CmdContext;
         private System.Windows.Forms.ToolStripMenuItem checkUpdate;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;

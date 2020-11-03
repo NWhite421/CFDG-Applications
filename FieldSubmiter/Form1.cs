@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using wyDay.Controls;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
 using System.Net;
+using AutoUpdaterDotNET;
 
 namespace FieldSubmiter
 {
@@ -20,20 +20,79 @@ namespace FieldSubmiter
         List<string> JobNumbers { get; set; }
         List<string> Files { get; set; }
 
-        List<string> OverwriteEmails { get; set; }
+        private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            try
+            {
+                if (args.IsUpdateAvailable)
+                {
+                    DialogResult dialogResult;
+                    if (args.Mandatory.Value)
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", @"Update Available",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {
+                                        args.InstalledVersion
+                                    }. Do you want to update the application now?", @"Update Available",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information);
+                    }
+
+                    // Uncomment the following line if you want to show standard update dialog instead.
+                    // AutoUpdater.ShowUpdateForm(args);
+
+                    if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
+                    {
+                        try
+                        {
+                            if (AutoUpdater.DownloadUpdate(args))
+                            {
+                                Application.Exit();
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    LblStatus.Text = "Program is up to date!";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK);
+            }
+        }
 
         public MainForm()
         {
             InitializeComponent();
 
-            if (!AutoUpdate.ClosingForInstall)
-            {
-                LoadSettings();
-            }
+            AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+            AutoUpdater.Start("https://s3.amazonaws.com/cfdg.updates/fds/update.xml");
+            LoadSettings();
         }
 
         void LoadSettings()
         {
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
             if (string.IsNullOrEmpty(Properties.Settings.Default.Name))
             {
                 Options options = new Options(false);
@@ -72,33 +131,21 @@ namespace FieldSubmiter
             JobNumbers = new List<string> { };
             Files = new List<string> { };
 
-            if (!Properties.Settings.Default.SendMethod)
+            /*if (!Properties.Settings.Default.SendMethod)
             {
                 ToolStripButton item = new ToolStripButton("Modify Recepiants");
                 contextMenuStrip.Items.Insert(0, item);
-            }
+            }*/
 
             TsMiOptions.Click += new EventHandler(Optionsclick);
+            checkUpdate.Click += new EventHandler(CheckForUpdates);
 
             LblStatus.Text = "Ready to go.";
         }
 
-        void TempChangeEmails(object s, EventArgs e)
-        {
-            AddRecipiants recipiants = new AddRecipiants();
-            var ret = recipiants.ShowDialog();
-            if (ret == DialogResult.Cancel)
-                return;
-            OverwriteEmails = recipiants.EmailAddresses;
-        }
-
-        private void AutoUpdate_ClosingAborted(object sender, EventArgs e)
-        {
-            LoadSettings();
-        }
-
         private void CheckForUpdates(object sender, EventArgs e)
         {
+            AutoUpdater.Start("https://s3.amazonaws.com/cfdg.updates/fds/update.xml");
         }
 
         private void OnNumberChanged(object sender, EventArgs e)

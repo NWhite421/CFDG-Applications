@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item>
+    <version>0.10.1.0</version>
+    <url>https://s3.amazonaws.com/cfdg.updates/fds/update.zip</url>
+	<mandatory>false</mandatory>
+</item>
