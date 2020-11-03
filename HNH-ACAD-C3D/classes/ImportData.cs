@@ -48,6 +48,24 @@ namespace AcC3D_Plug
             }
         }
 
+        
+        public static BitmapImage BitmapToImageSource(params Bitmap[] bitmaps)
+        {
+            if (bitmaps.Length == 0)
+                return new BitmapImage();
+            int width = bitmaps.Max(map => map.Width);
+            int height = bitmaps.Max(map => map.Height);
+            Bitmap result = new Bitmap(width,height);
+            using (Graphics g = Graphics.FromImage(result))
+            {
+                foreach (Bitmap map in bitmaps)
+                {
+                    g.DrawImage(map, System.Drawing.Point.Empty);
+                }
+            }
+            return BitmapToImageSource(result);
+        }
+
 
         public static List<List<C3DPoint>> ProcessFiles(List<string> Files)
         {

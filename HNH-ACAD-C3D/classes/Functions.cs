@@ -33,7 +33,7 @@ namespace AcC3D_Plug
         /// <returns></returns>
         private static string Parse(string fileName)
         {
-            var match = Regex.Match(fileName, @"(\d{2}|\d{4})(-\d{2}-\d{3})|(\d{7,9})");
+            var match = Regex.Match(fileName, @"(\d{2}|\d{4})(-\d{2}-\d{3})|(\d{9})|(\d{7})");
             if (match.Success)
             {
                 return match.Value;

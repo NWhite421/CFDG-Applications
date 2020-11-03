@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\Functions.cs" />
+    <Compile Include="classes\ProjectManagement.cs" />
     <Compile Include="dialogs\ExportPoints.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +210,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\Export PG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\overlay-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\overlay-export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\field.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\overlay-field.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

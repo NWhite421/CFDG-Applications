@@ -183,14 +183,14 @@ namespace AcC3D_Plug
             string pointStr = "";
             string descriptionStr = "";
 
-            //Get the purpose of the points
+            // Get the purpose of the points
             PromptStringOptions pStrOpts = new PromptStringOptions("\nEnter the purpose: ")
             {
                 AllowSpaces = true
             };
             PromptResult pRlt = adEd.GetString(pStrOpts);
 
-            //If the string was empty (or null somehow)
+            // If the string was empty (or null somehow)
             if (string.IsNullOrEmpty(pRlt.StringResult)) { adEd.WriteMessage("\nThe string entered was empty, please try again."); return; }
             string purpose = pRlt.StringResult;
 
