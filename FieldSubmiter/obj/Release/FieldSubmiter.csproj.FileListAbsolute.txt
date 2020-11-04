@@ -1,7 +1,6 @@
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\FieldSubmiter.exe.config
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\FieldSubmiter.exe
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\FieldSubmiter.pdb
-C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\AutomaticUpdater.dll
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.csprojAssemblyReference.cache
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.MainForm.resources
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.Options.resources
@@ -11,8 +10,6 @@ C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\Fiel
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.csproj.CopyComplete
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.exe
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.pdb
-C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\wyUpdate.exe
-C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\client.wyc
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\Microsoft.WindowsAPICodePack.dll
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\Microsoft.WindowsAPICodePack.xml
@@ -37,3 +34,7 @@ D:\App Development\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.csproj.Cop
 D:\App Development\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.exe
 D:\App Development\ODG-Master\FieldSubmiter\obj\Release\FieldSubmiter.pdb
 D:\App Development\ODG-Master\FieldSubmiter\bin\Release\field_export_stW_icon.ico
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\field_export_stW_icon.ico
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\AutoUpdater.NET.dll
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\AutoUpdater.NET.pdb
+C:\Users\Nathan White\source\repos\ODG\ODG-Master\FieldSubmiter\bin\Release\AutoUpdater.NET.xml
