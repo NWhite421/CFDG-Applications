@@ -326,12 +326,6 @@ namespace AcC3D_Plug
 
         #endregion
 
-        #region COMMANDS
-
-
-
-        #endregion
-
     }
 
     // RibbonButton Event Handlers

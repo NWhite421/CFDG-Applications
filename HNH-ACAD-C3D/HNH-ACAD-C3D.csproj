@@ -78,6 +78,12 @@
   <ItemGroup>
     <Compile Include="classes\Functions.cs" />
     <Compile Include="classes\ProjectManagement.cs" />
+    <Compile Include="dialogs\CogoPointEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dialogs\CogoPointEditor.Designer.cs">
+      <DependentUpon>CogoPointEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="dialogs\ExportPoints.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="dialogs\CogoPointEditor.resx">
+      <DependentUpon>CogoPointEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="dialogs\ExportPoints.resx">
       <DependentUpon>ExportPoints.cs</DependentUpon>
     </EmbeddedResource>

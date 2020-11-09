@@ -7,6 +7,7 @@ using AcC3D_Plug.Extensions;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Civil.ApplicationServices;
 using Autodesk.Civil.DatabaseServices;
@@ -287,5 +288,123 @@ namespace AcC3D_Plug
             }
             adEd.WriteMessage("\nPoint group created successfully!");
         }
+
+        [CommandMethod("CreateACPoints")]
+        public static void CreateACPoint()
+        {
+            var AcDoc = AcApp.DocumentManager.MdiActiveDocument;
+            var AcEdit = AcDoc.Editor;
+            var AcDb = AcDoc.Database;
+            var OSnapZ = Convert.ToBoolean(AcApp.TryGetSystemVariable("OSnapZ"));
+
+            if (OSnapZ)
+            {
+                var ret = MessageBox.Show("Objects will be placed at elevation 0. Continue?", "OSnapZ is on", MessageBoxButtons.YesNo);
+                if (ret == DialogResult.No)
+                {
+                    AcEdit.WriteMessage("Command exited per user input.");
+                    return;
+                }
+            }
+
+            AcEdit.WriteMessage("\nPlease select a point " + (OSnapZ ? "[2D]: " : "[3D]: "));
+
+
+            PromptPointOptions pointOptions = new PromptPointOptions("\nPlease select a point: ")
+            {
+                AllowNone = true,
+                UseBasePoint = false
+            };
+
+            bool continueCommand = true;
+
+            while (continueCommand)
+            {
+                var point = AcEdit.GetPoint(pointOptions);
+                if (point.Status == PromptStatus.Cancel)
+                {
+                    break;
+                }
+                Point3d endPt = point.Value;
+                if (OSnapZ)
+                    endPt = new Point3d(endPt.X, endPt.Y, 0);
+
+                using (Transaction tr = AcDb.TransactionManager.StartTransaction())
+                {
+                    // Open the Block table record for read
+                    BlockTable acBlkTbl = tr.GetObject(AcDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+                    // Open the Block table record Model space for write
+                    BlockTableRecord acBlkTblRec = tr.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+                    DBPoint acPoint = new DBPoint(endPt);
+                    acPoint.SetDatabaseDefaults();
+                    acBlkTblRec.AppendEntity(acPoint);
+                    tr.AddNewlyCreatedDBObject(acPoint, true);
+                    tr.Commit();
+                }
+            }
+                        
+        }
+
+        /*
+        [CommandMethod("CreateCogoPoints")]
+        public static void CreateCogoPoints()
+        {
+            var AcDoc = AcApp.DocumentManager.MdiActiveDocument;
+            var AcEdit = AcDoc.Editor;
+            var AcDb = AcDoc.Database;
+            var OSnapZ = Convert.ToBoolean(AcApp.TryGetSystemVariable("OSnapZ"));
+
+            CogoPointEditor cogoEditor = new CogoPointEditor();
+
+            if (OSnapZ)
+            {
+                var ret = MessageBox.Show("Objects will be placed at elevation 0. Continue?", "OSnapZ is on", MessageBoxButtons.YesNo);
+                if (ret == DialogResult.No)
+                {
+                    AcEdit.WriteMessage("Command exited per user input.");
+                    return;
+                }
+            }
+
+            AcEdit.WriteMessage("\nPlease select a point " + (OSnapZ ? "[2D]: " : "[3D]: "));
+
+
+            PromptPointOptions pointOptions = new PromptPointOptions("\nPlease select a point: ")
+            {
+                AllowNone = true,
+                UseBasePoint = false
+            };
+
+            bool continueCommand = true;
+
+            while (continueCommand)
+            {
+                var point = AcEdit.GetPoint(pointOptions);
+                if (point.Status == PromptStatus.Cancel)
+                {
+                    break;
+                }
+                Point3d endPt = point.Value;
+                if (OSnapZ)
+                    endPt = new Point3d(endPt.X, endPt.Y, 0);
+
+                using (Transaction tr = AcDb.TransactionManager.StartTransaction())
+                {
+                    // Open the Block table record for read
+                    BlockTable acBlkTbl = tr.GetObject(AcDb.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+                    // Open the Block table record Model space for write
+                    BlockTableRecord acBlkTblRec = tr.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+                    DBPoint acPoint = new DBPoint(endPt);
+                    acPoint.SetDatabaseDefaults();
+                    acBlkTblRec.AppendEntity(acPoint);
+                    tr.AddNewlyCreatedDBObject(acPoint, true);
+                    tr.Commit();
+                }
+            }
+
+        }
+        */
     }
 }
