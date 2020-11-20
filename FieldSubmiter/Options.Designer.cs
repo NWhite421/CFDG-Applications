@@ -34,9 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.TxtFullName = new System.Windows.Forms.TextBox();
             this.TxtDefaultSearch = new System.Windows.Forms.TextBox();
-            this.RbEmail = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.RbTCPConnection = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtReceivers = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -52,24 +50,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TxtEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.TxtTCPPort = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TxtTCPIP = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.CmdApplyChanges = new System.Windows.Forms.Button();
             this.CmdDiscardChanges = new System.Windows.Forms.Button();
+            this.lbItems = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmdAddItem = new System.Windows.Forms.Button();
+            this.cmdRemove = new System.Windows.Forms.Button();
+            this.cmdMoveUp = new System.Windows.Forms.Button();
+            this.cmdMoveDown = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // CmdEdit
             // 
             this.CmdEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CmdEdit.Location = new System.Drawing.Point(422, 12);
+            this.CmdEdit.Location = new System.Drawing.Point(12, 292);
             this.CmdEdit.Name = "CmdEdit";
-            this.CmdEdit.Size = new System.Drawing.Size(108, 38);
+            this.CmdEdit.Size = new System.Drawing.Size(108, 30);
             this.CmdEdit.TabIndex = 0;
             this.CmdEdit.Text = "Edit";
             this.CmdEdit.UseVisualStyleBackColor = true;
@@ -78,7 +76,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 59);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 20);
             this.label1.TabIndex = 1;
@@ -87,7 +85,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 92);
+            this.label2.Location = new System.Drawing.Point(12, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 3;
@@ -95,9 +93,8 @@
             // 
             // button1
             // 
-            this.button1.Enabled = false;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(424, 88);
+            this.button1.Location = new System.Drawing.Point(424, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 28);
             this.button1.TabIndex = 5;
@@ -108,52 +105,28 @@
             // 
             // TxtFullName
             // 
-            this.TxtFullName.Enabled = false;
-            this.TxtFullName.Location = new System.Drawing.Point(102, 56);
+            this.TxtFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtFullName.Location = new System.Drawing.Point(102, 12);
             this.TxtFullName.Name = "TxtFullName";
             this.TxtFullName.Size = new System.Drawing.Size(428, 26);
             this.TxtFullName.TabIndex = 1;
             // 
             // TxtDefaultSearch
             // 
-            this.TxtDefaultSearch.Enabled = false;
-            this.TxtDefaultSearch.Location = new System.Drawing.Point(127, 89);
+            this.TxtDefaultSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtDefaultSearch.Location = new System.Drawing.Point(127, 45);
             this.TxtDefaultSearch.Name = "TxtDefaultSearch";
             this.TxtDefaultSearch.Size = new System.Drawing.Size(291, 26);
             this.TxtDefaultSearch.TabIndex = 2;
             // 
-            // RbEmail
-            // 
-            this.RbEmail.AutoSize = true;
-            this.RbEmail.Checked = true;
-            this.RbEmail.Enabled = false;
-            this.RbEmail.Location = new System.Drawing.Point(12, 146);
-            this.RbEmail.Name = "RbEmail";
-            this.RbEmail.Size = new System.Drawing.Size(71, 24);
-            this.RbEmail.TabIndex = 3;
-            this.RbEmail.TabStop = true;
-            this.RbEmail.Text = "E-Mail";
-            this.RbEmail.UseVisualStyleBackColor = true;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 123);
+            this.label3.Location = new System.Drawing.Point(12, 79);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 20);
+            this.label3.Size = new System.Drawing.Size(136, 20);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Send Method:";
-            // 
-            // RbTCPConnection
-            // 
-            this.RbTCPConnection.AutoSize = true;
-            this.RbTCPConnection.Enabled = false;
-            this.RbTCPConnection.Location = new System.Drawing.Point(12, 176);
-            this.RbTCPConnection.Name = "RbTCPConnection";
-            this.RbTCPConnection.Size = new System.Drawing.Size(142, 24);
-            this.RbTCPConnection.TabIndex = 10;
-            this.RbTCPConnection.Text = "TCP Connection";
-            this.RbTCPConnection.UseVisualStyleBackColor = true;
+            this.label3.Text = "Default Purposes:";
             // 
             // groupBox1
             // 
@@ -171,7 +144,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TxtEmail);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(12, 206);
+            this.groupBox1.Location = new System.Drawing.Point(12, 328);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(518, 270);
             this.groupBox1.TabIndex = 11;
@@ -307,66 +280,8 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Sender EMail:";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.TxtTCPPort);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.TxtTCPIP);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(12, 482);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(518, 116);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "TCP Connection Settings";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(151, 86);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(169, 20);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "TO BE IMPLIMENTED";
-            // 
-            // TxtTCPPort
-            // 
-            this.TxtTCPPort.Enabled = false;
-            this.TxtTCPPort.Location = new System.Drawing.Point(120, 57);
-            this.TxtTCPPort.Name = "TxtTCPPort";
-            this.TxtTCPPort.Size = new System.Drawing.Size(392, 26);
-            this.TxtTCPPort.TabIndex = 12;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(72, 60);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 20);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "Port:";
-            // 
-            // TxtTCPIP
-            // 
-            this.TxtTCPIP.Enabled = false;
-            this.TxtTCPIP.Location = new System.Drawing.Point(120, 25);
-            this.TxtTCPIP.Name = "TxtTCPIP";
-            this.TxtTCPIP.Size = new System.Drawing.Size(392, 26);
-            this.TxtTCPIP.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(113, 20);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Destination IP:";
-            // 
             // CmdApplyChanges
             // 
-            this.CmdApplyChanges.Enabled = false;
             this.CmdApplyChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CmdApplyChanges.Location = new System.Drawing.Point(371, 604);
             this.CmdApplyChanges.Name = "CmdApplyChanges";
@@ -378,7 +293,6 @@
             // 
             // CmdDiscardChanges
             // 
-            this.CmdDiscardChanges.Enabled = false;
             this.CmdDiscardChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CmdDiscardChanges.Location = new System.Drawing.Point(12, 604);
             this.CmdDiscardChanges.Name = "CmdDiscardChanges";
@@ -389,19 +303,103 @@
             this.CmdDiscardChanges.UseVisualStyleBackColor = true;
             this.CmdDiscardChanges.Click += new System.EventHandler(this.CmdDiscardChanges_Click);
             // 
+            // lbItems
+            // 
+            this.lbItems.FormattingEnabled = true;
+            this.lbItems.ItemHeight = 20;
+            this.lbItems.Location = new System.Drawing.Point(12, 102);
+            this.lbItems.Name = "lbItems";
+            this.lbItems.Size = new System.Drawing.Size(271, 164);
+            this.lbItems.TabIndex = 15;
+            this.lbItems.SelectedIndexChanged += new System.EventHandler(this.onListSelectionChange);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(289, 125);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(241, 26);
+            this.textBox1.TabIndex = 16;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(289, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(161, 20);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Add Default Purpose:";
+            // 
+            // cmdAddItem
+            // 
+            this.cmdAddItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdAddItem.Location = new System.Drawing.Point(424, 157);
+            this.cmdAddItem.Name = "cmdAddItem";
+            this.cmdAddItem.Size = new System.Drawing.Size(106, 28);
+            this.cmdAddItem.TabIndex = 18;
+            this.cmdAddItem.TabStop = false;
+            this.cmdAddItem.Text = "Add";
+            this.cmdAddItem.UseVisualStyleBackColor = true;
+            this.cmdAddItem.Click += new System.EventHandler(this.addDP);
+            // 
+            // cmdRemove
+            // 
+            this.cmdRemove.Enabled = false;
+            this.cmdRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdRemove.Location = new System.Drawing.Point(289, 238);
+            this.cmdRemove.Name = "cmdRemove";
+            this.cmdRemove.Size = new System.Drawing.Size(106, 28);
+            this.cmdRemove.TabIndex = 19;
+            this.cmdRemove.TabStop = false;
+            this.cmdRemove.Text = "Remove";
+            this.cmdRemove.UseVisualStyleBackColor = true;
+            this.cmdRemove.Click += new System.EventHandler(this.removeDP);
+            // 
+            // cmdMoveUp
+            // 
+            this.cmdMoveUp.Enabled = false;
+            this.cmdMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.cmdMoveUp.Location = new System.Drawing.Point(289, 157);
+            this.cmdMoveUp.Name = "cmdMoveUp";
+            this.cmdMoveUp.Size = new System.Drawing.Size(39, 36);
+            this.cmdMoveUp.TabIndex = 20;
+            this.cmdMoveUp.TabStop = false;
+            this.cmdMoveUp.Text = "▲";
+            this.cmdMoveUp.UseVisualStyleBackColor = true;
+            this.cmdMoveUp.Click += new System.EventHandler(this.moveItemUp);
+            // 
+            // cmdMoveDown
+            // 
+            this.cmdMoveDown.Enabled = false;
+            this.cmdMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.cmdMoveDown.Location = new System.Drawing.Point(289, 196);
+            this.cmdMoveDown.Name = "cmdMoveDown";
+            this.cmdMoveDown.Size = new System.Drawing.Size(39, 36);
+            this.cmdMoveDown.TabIndex = 21;
+            this.cmdMoveDown.TabStop = false;
+            this.cmdMoveDown.Text = "▼";
+            this.cmdMoveDown.UseVisualStyleBackColor = true;
+            this.cmdMoveDown.Click += new System.EventHandler(this.moveItemDown);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(542, 663);
+            this.Controls.Add(this.cmdMoveDown);
+            this.Controls.Add(this.cmdMoveUp);
+            this.Controls.Add(this.cmdRemove);
+            this.Controls.Add(this.cmdAddItem);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lbItems);
             this.Controls.Add(this.CmdDiscardChanges);
             this.Controls.Add(this.CmdApplyChanges);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.RbTCPConnection);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.RbEmail);
             this.Controls.Add(this.TxtDefaultSearch);
             this.Controls.Add(this.TxtFullName);
             this.Controls.Add(this.button1);
@@ -417,8 +415,6 @@
             this.Text = "Options";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,9 +428,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox TxtFullName;
         private System.Windows.Forms.TextBox TxtDefaultSearch;
-        private System.Windows.Forms.RadioButton RbEmail;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton RbTCPConnection;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.Label label4;
@@ -448,15 +442,16 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtEmailDomain;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox TxtTCPPort;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox TxtTCPIP;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button CmdApplyChanges;
         private System.Windows.Forms.Button CmdDiscardChanges;
         private System.Windows.Forms.TextBox TxtReceivers;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ListBox lbItems;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button cmdAddItem;
+        private System.Windows.Forms.Button cmdRemove;
+        private System.Windows.Forms.Button cmdMoveUp;
+        private System.Windows.Forms.Button cmdMoveDown;
     }
 }

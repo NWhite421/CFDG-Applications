@@ -26,17 +26,18 @@ namespace FieldSubmiter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>Boundary</string>
-  <string>Boundary / Topo</string>
-  <string>Control</string>
-  <string>Formboard</string>
-  <string>Foundation</string>
-  <string>Elevation Certificate</string>
-  <string>Final Site</string>
-  <string>Layout</string>
-  <string>As-Built</string>
-</ArrayOfString>")]
+            <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+              <string>Boundary</string>
+              <string>Boundary - Topo</string>
+              <string>ALTA</string>
+              <string>Control</string>
+              <string>Formboard</string>
+              <string>Foundation</string>
+              <string>Elevation Certificate</string>
+              <string>Final Site</string>
+              <string>Layout</string>
+              <string>As-Built</string>
+            </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection Purposes {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Purposes"]));

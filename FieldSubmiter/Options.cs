@@ -34,8 +34,6 @@ namespace FieldSubmiter
             TxtFullName.Text = Properties.Settings.Default.Name;
             TxtDefaultSearch.Text = string.IsNullOrEmpty(Properties.Settings.Default.DefaultSearch) ? "" : Properties.Settings.Default.DefaultSearch;
 
-            RbTCPConnection.Checked = Properties.Settings.Default.SendMethod; //Property false: EMail ; Proeprty true: TCP
-
             TxtEmail.Text = Properties.Settings.Default.EMail;
             TxtEMailPassword.Text = Properties.Settings.Default.Password;
             TxtReceivers.Text = Properties.Settings.Default.DestEmail;
@@ -48,6 +46,9 @@ namespace FieldSubmiter
             {
                 AllowEdit(this, new EventArgs());
             }
+
+            var PurposeList = Properties.Settings.Default.Purposes.Cast<string>().ToList();
+            lbItems.Items.AddRange(PurposeList.ToArray());
         }
 
         void UpdateEMailSettings(object s, EventArgs e)
@@ -96,7 +97,7 @@ namespace FieldSubmiter
             if (confirm == DialogResult.Cancel) return;
             Control[] blacklist = new Control[]
             {
-                TxtEmailDomain, TxtEmailPort, CbxEmailSSL, TxtTCPIP, TxtTCPPort, RbTCPConnection
+                TxtEmailDomain, TxtEmailPort, CbxEmailSSL
             };
 
             foreach (Control ctrl in this.Controls )
@@ -127,21 +128,24 @@ namespace FieldSubmiter
                 MessageBox.Show("Put your full name.");
                 return;
             }
-            if (RbEmail.Checked && (string.IsNullOrEmpty(TxtEmail.Text) 
+            /*if (RbEmail.Checked && (string.IsNullOrEmpty(TxtEmail.Text) 
                 || string.IsNullOrEmpty(TxtEMailPassword.Text) 
                 || string.IsNullOrEmpty(TxtReceivers.Text)))
             {
                 MessageBox.Show("Fill out all the e-mail settings or configure the E-Mail connection.");
                 return;
-            }
+            }*/
             //TODO: Add TCP Check
 
+            System.Collections.Specialized.StringCollection collection = new System.Collections.Specialized.StringCollection();
+            collection.AddRange(lbItems.Items.OfType<string>().ToArray());
+
+            Properties.Settings.Default.Purposes = collection;
             Properties.Settings.Default.EMail = TxtEmail.Text;
             Properties.Settings.Default.Password = TxtEMailPassword.Text;
             Properties.Settings.Default.DestEmail = TxtReceivers.Text;
             Properties.Settings.Default.DefaultSearch = string.IsNullOrEmpty(TxtDefaultSearch.Text) ? "" : TxtDefaultSearch.Text;
             Properties.Settings.Default.Name = TxtFullName.Text;
-            Properties.Settings.Default.SendMethod = !RbEmail.Checked; //Property false: EMail ; Proeprty true: TCP
             Properties.Settings.Default.EMailServerMethod = CbHosts.SelectedIndex;
             Properties.Settings.Default.EMailDomain = (CbHosts.SelectedIndex == 3) ? TxtEmailDomain.Text : "";
             Properties.Settings.Default.EMailPort = (CbHosts.SelectedIndex == 3) ? int.Parse(TxtEmailDomain.Text) : 0;
@@ -150,6 +154,7 @@ namespace FieldSubmiter
             Properties.Settings.Default.*/
 
             Properties.Settings.Default.Save();
+
             this.Close();
         }
 
@@ -167,6 +172,76 @@ namespace FieldSubmiter
             if (dr == CommonFileDialogResult.Cancel) return;
             TxtDefaultSearch.Text = directoryDialog.FileName;
             directoryDialog.Dispose();
+        }
+
+        private void onListSelectionChange(object sender, EventArgs e)
+        {
+            if (lbItems.SelectedItem == null || lbItems.SelectedIndex > lbItems.Items.Count - 1)
+            {
+                return;
+            }
+            else
+            {
+                cmdRemove.Enabled = true;
+                cmdMoveUp.Enabled = (lbItems.SelectedIndex == 0) ? false : true;
+                cmdMoveDown.Enabled = (lbItems.SelectedIndex == lbItems.Items.Count - 1) ? false : true;
+            }
+        }
+
+        private void removeDP(object sender, EventArgs e)
+        {
+            if (lbItems.SelectedItem == null || lbItems.SelectedIndex > lbItems.Items.Count - 1)
+            {
+                return;
+            }
+
+            lbItems.Items.RemoveAt(lbItems.SelectedIndex);
+            cmdRemove.Enabled = false;
+        }
+
+        private void addDP(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                return;
+            }
+            lbItems.Items.Add(textBox1.Text);
+            textBox1.Text = "";
+            textBox1.Focus();
+        }
+
+        private void moveItemUp(object sender, EventArgs e)
+        {
+            MoveItem(-1);
+            cmdMoveUp.Enabled = (lbItems.SelectedIndex == 0) ? false : true;
+        }
+
+        private void moveItemDown(object sender, EventArgs e)
+        {
+            MoveItem(1);
+            cmdMoveDown.Enabled = (lbItems.SelectedIndex == lbItems.Items.Count - 1) ? false : true;
+        }
+        public void MoveItem(int direction)
+        {
+            // Checking selected item
+            if (lbItems.SelectedItem == null || lbItems.SelectedIndex > lbItems.Items.Count - 1)
+                return; // No selected item - nothing to do
+
+            // Calculate new index using move direction
+            int newIndex = lbItems.SelectedIndex + direction;
+
+            // Checking bounds of the range
+            if (newIndex < 0 || newIndex >= lbItems.Items.Count)
+                return; // Index out of range - nothing to do
+
+            object selected = lbItems.SelectedItem;
+
+            // Removing removable element
+            lbItems.Items.Remove(selected);
+            // Insert it in new position
+            lbItems.Items.Insert(newIndex, selected);
+            // Restore selection
+            lbItems.SetSelected(newIndex, true);
         }
     }
 }

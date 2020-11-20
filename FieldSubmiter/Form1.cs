@@ -67,7 +67,7 @@ namespace FieldSubmiter
                 }
                 else
                 {
-                    LblStatus.Text = "Program is up to date!";
+                    lblStatus.Text = "Program is up to date!";
                 }
             }
             catch (Exception ex)
@@ -111,6 +111,10 @@ namespace FieldSubmiter
             MainArea:
 
             //Populate the purpose list
+            if (CbPurpose.Items.Count > -1)
+            {
+                CbPurpose.Items.Clear();
+            }
             var PurposeList = Properties.Settings.Default.Purposes.Cast<string>().ToList();
             CbPurpose.Items.AddRange(PurposeList.ToArray());
 
@@ -136,11 +140,12 @@ namespace FieldSubmiter
                 ToolStripButton item = new ToolStripButton("Modify Recepiants");
                 contextMenuStrip.Items.Insert(0, item);
             }*/
-
+            TsMiOptions.Font = new Font(TsMiOptions.Font.FontFamily, 16);
+            checkUpdate.Font = new Font(checkUpdate.Font.FontFamily, 16);
             TsMiOptions.Click += new EventHandler(Optionsclick);
             checkUpdate.Click += new EventHandler(CheckForUpdates);
 
-            LblStatus.Text = "Ready to go.";
+            lblStatus.Text = "Ready to go.";
         }
 
         private void CheckForUpdates(object sender, EventArgs e)
@@ -288,7 +293,7 @@ namespace FieldSubmiter
             }
             else
             {
-                LblStatus.Text = "Creating E-Mail";
+                lblStatus.Text = "Creating E-Mail";
                 //EMail
                 
                 try
@@ -318,7 +323,7 @@ namespace FieldSubmiter
                             }
                             else
                             {
-                                LblStatus.Text = "No job numbers detected.";
+                                lblStatus.Text = "No job numbers detected.";
                                 return;
                             }
                         }
@@ -326,7 +331,7 @@ namespace FieldSubmiter
                         if (Files.Count == 0)
                         {
                             var mr = MessageBox.Show("No files were added, continue sending data?", "Confirm", MessageBoxButtons.YesNo);
-                            if (mr == DialogResult.No) { LblStatus.Text = "No files detected."; return; }
+                            if (mr == DialogResult.No) { lblStatus.Text = "No files detected."; return; }
                         }
                         else
                         {
@@ -346,7 +351,7 @@ namespace FieldSubmiter
                         message.Body = msgBodyFormatted;
                     }
 
-                    LblStatus.Text = "Preparing Sender";
+                    lblStatus.Text = "Preparing Sender";
 
 
                     SmtpClient client;
@@ -395,17 +400,17 @@ namespace FieldSubmiter
                         }
                 }
 
-                LblStatus.Text = "Sending E-Mail";
+                lblStatus.Text = "Sending E-Mail";
                 client.Send(message);
 
-                LblStatus.Text = "Message sent.";
+                lblStatus.Text = "Message sent.";
 
 
                 message.Dispose();
                 client.Dispose();
             } catch (Exception ex)
                 {
-                    LblStatus.Text = "Message failed.";
+                    lblStatus.Text = "Message failed.";
 #if DEBUG
                     MessageBox.Show(ex.Message);
 #endif
@@ -421,6 +426,7 @@ namespace FieldSubmiter
             Options options = new Options();
             options.ShowDialog();
             options.Dispose();
+            LoadSettings();
         }
 
         private void CmdContext_Click(object sender, EventArgs e)
